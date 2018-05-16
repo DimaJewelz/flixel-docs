@@ -2,64 +2,62 @@
 title: "Flixel Frontends"
 ```
 
-Frontends in HaxeFlixel 3.x are a new structure to the core of Flixel and which tackles the often criticized bloated collection of static methods in `FlxG`.
+Фронтенды в HaxeFlixel 3.x являются новой структурой, которая включает в себя часто используемые коллекции статичных методов, объединенные в классе `FlxG`.
 
-Frontends are accessed in `FlxG.frontend` in a similar fashion to what Flixel devs are used to. Careful thought has been given to organise them into logical shortcuts. This way the API will be easier to browse, remember and maintain.
+Фронтенды доступны через вызов `FlxG.frontend`. Все фронтенды организованы по их функционалу для удобства просмотра, поиска и использования.
 
-For example in HaxeFlixel 2.x to add a `FlxCamera` you would use `FlxG.addCamera(camera:FlxCamera);`, this `addCamera()` method has been moved into a `cameras` frontend with all the other `FlxCamera`-related methods.
-So the code in HaxeFlixel 3.x to add a `FlxCamera` is now `FlxG.cameras.add(camera:FlxCamera)`.
+Например, в HaxeFlixel 2.x чтобы добавить камеру `FlxCamera`, приходилось использовать `FlxG.addCamera(camera:FlxCamera);`. Позднее, метод `addCamera()` был перенесен во фронтенд `cameras` вместе с другими методами, которые относятся к `FlxCamera`.
+Поэтому чтобы добавить камеру в HaxeFlixel 3.x, используется вызов `FlxG.cameras.add(camera:FlxCamera)`.
 
-The Flixel FrontEnds are as follows:
+Во Flixel существуют следующие фронтенды:
 
 ### FlxG.inputs
 
-A reference to the `InputFrontEnd` object. Mostly used internally,
-but you can use it too to reset inputs and create input classes of your own.
+Ссылка на объект `InputFrontEnd`. В основном используется самим движком,
+но вы можете использовать его для создания собственных классов ввода.
 
 ### FlxG.console
 
-A reference to the `ConsoleFrontEnd` object. Use it to register functions and objects
-or `add` new commands to the console window.
+Ссылка на объект `ConsoleFrontEnd`. Используется для регистрации функций и объектов
+или добавления `add` новых команд в окно консоли.
 
 ### FlxG.log
 
-A reference to the `LogFrontEnd` object. Use it to `add` messages to the log window. It is recommended
-to use `trace()` instead of the old `FlxG.log()`, since traces will be redirected by default.
+Ссылка на объект `LogFrontEnd`. Используется для добавления `add` сообщений в окно логов. Рекомендуется
+использовать `trace()` вместо устаревшего `FlxG.log()`, т.к. `trace()` перенаправляет сообщения в окно логов по умолчанию.
 
 ### FlxG.watch
 
-A reference to the `WatchFrontEnd` object. Use it to add or remove things to / from the watch window.
+Ссылка на объект `WatchFrontEnd`. Используется для добавления и удаления из окна наблюдения.
 
 ### FlxG.debugger
 
-A reference to the `DebuggerFrontEnd` object. Use it to show / hide / toggle the debugger
-change its layout, activate visual debugging or change the key used to toggle it.
+Ссылка на объект `DebuggerFrontEnd`. Используется для показа / скрытия / переключения вкладок дебагера,
+активации визуальной отладки или изменения кнопки для его переключения.
 
 ### FlxG.vcr
 
-A reference to the `VCRFrontEnd` object. Contains all the functions needed for recording
-and replaying.
+Ссылка на объект `VCRFrontEnd`. Содержит все фукнции, необходимые для записи и воспроизведения.
 
 ### FlxG.bitmap
 
-A reference to the `BitmapFrontEnd` object. Contains things related to bitmaps,
-for example regarding the bitmap cache and the cache itself.
+Ссылка на объект `BitmapFrontEnd`. Содержит все, что касается Bitmap, например, кеш Bitmap.
 
 ### FlxG.cameras
 
-A reference to the `CameraFrontEnd` object. Contains things related to cameras,
-a `list` of all cameras and camera effects like `flash()` or `shake()`.
+Ссылка на объект `CameraFrontEnd`. Содержит все, что касается камер, список камер, 
+а также эффекты для камер, например `flash()` или `shake()`.
 
 ### FlxG.plugins
 
-A reference to the `PluginFrontEnd` object. Contains a `list` of all
-plugins and the functions required to `add()`, `remove()` them etc.
+Ссылка на объект `PluginFrontEnd`. Содержит список `list` всех плагинов
+и функций для добавления `add()`, удаления `remove()` их.
 
 ### FlxG.sound
 
-A reference to the `SoundFrontEnd` object. Contains a `list` of all
-sounds and other things to manage or `play()` sounds.
+Ссылка на объект `SoundFrontEnd`. Содержит список `list` всех звуков
+и все, что касается управления или воспроизведения `play()` звуков.
 
 ### FlxG.html5
 
-Provides information on some HTML5-specific things like `browser`, `browserPosition` etc...
+Предоставляет данные по некоторым HTML5 объектам, например `browser`, `browserPosition` и др.
