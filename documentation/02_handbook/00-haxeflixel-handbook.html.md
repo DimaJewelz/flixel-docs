@@ -1,12 +1,13 @@
 ```
-title: "HaxeFlixel Handbook"
+title: "Руководство HaxeFlixel"
 rootDoc: true
 ```
 
-Welcome to the HaxeFlixel handbook. These pages are intended to answer common questions and explain the main ideas and structures behind most HaxeFlixel games.
-As the types of games and use cases of HaxeFlixel are vast we appreciate developers making additions and improvements to this documentation through [GitHub](https://github.com/HaxeFlixel/flixel-docs).
+Добро пожаловать в руководство по HaxeFlixel. Текущие статьи предназначены для ответа на общие вопросы и объяснения основных идей и структур, лежащих в основе большинства игр на HaxeFlixel.
 
-If you are familiar with AS3 and new to Haxe, we encourage you to read the [AS3 and Haxe comparison](http://www.openfl.org/archive/developer/documentation/actionscript-developers/).
+Поскольку применение HaxeFlixel довольно обширно, мы будем рады помощи по улучшению и дописанию статей в этом руководстве через [GitHub](https://github.com/HaxeFlixel/flixel-docs). 
 
-HaxeFlixel's API is largely the same as the AS3 version, and existing documentation and resources for ActionScript 3 are still relevant.
-The biggest changes in the API were made in HaxeFlixel 3.x you can review the changes on the [HaxeFlixel 3.x page.](/documentation/haxeflixel-3-x)
+Если вы уже знакомы с AS3, но новичок в Haxe, рекомендуем начать обучение со [сравнения AS3 и Haxe](http://www.openfl.org/archive/developer/documentation/actionscript-developers/).
+
+HaxeFlixel очень схож с AS3, поэтому документация и ресурсы по ActionScript 3 по-прежнему актуальны.
+Глобальное изменение было в версии HaxeFlixel 3.x, вы можете посмотреть изменения [тут](/documentation/haxeflixel-3-x).
