@@ -43,7 +43,7 @@ class FlxExampleState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		//вызов базового метода для обновления состояния базового класса
+		//вызов базового метода для обновления состояния
 		super.update(elapsed);
 	}
 }
