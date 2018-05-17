@@ -7,13 +7,13 @@ apiPath: FlxSprite.html
 import flixel.FlxSprite;
 ```
 
-FlxSprites are the core building blocks of all Flixel games. They offer a friendly API to add animation, movement and features for the needs of most games.
+`FlxSprite` является ключевым во фрейморке Flixel. Он имеет функционал для добавления анимации, движения и другого функицонала, требуемого для большинства игр.
 
-It is pretty common place to extend `FlxSprite` for your own game's needs; for example a `SpaceShip` class may extend `FlxSprite` but could have additional variables for the game like `shieldStrength` or `shieldPower`. When you extend `FlxSprite` it is important to remember to use `super.update()` if you override the `update` method, as you would do for any other `FlxBasic`.
+Чаще всего вы захотите унаследоваться от `FlxSprite` для реализации требований вашей конкретной игры. Например класс `SpaceShip` может наследоваться от `FlxSprite` и иметь дополнительные поля, например `shieldStrength` или `shieldPower`. Когда вы наследуете класс от `FlxSprite`, важно помнить о переопределении метода `update` и вызове `super.update()`, как и для любого другого `FlxBasic`.
 
 #### loadGraphic()
 
-This method is the easiest way to use a single image for your FlxSprite. Using the OpenFL asset system defined in the project xml file you simply have to define a path to your image and the compiler will do the rest.
+Загружает одиночное изображение в `FlxSprite`. Во Flixel используется система хранения ассетов из OpenFL, определяемая настройками xml вашего проекта. Поэтому вам просто необходимо указать путь до требуемого изображения, а компилятор сделает все остальное.
 
 ```haxe
 var player = new FlxSprite();
@@ -23,7 +23,7 @@ add(player);
 
 #### makeGraphic()
 
-This method is a handy way to make a simple color fill to quickly test a feature or have the basic shape.
+Делает прямоугольную заливку заданным цветом.
 
 ```haxe
 var whiteSquare = new FlxSprite();
@@ -31,17 +31,18 @@ whiteSquare.makeGraphic(200, 200, FlxColor.WHITE);
 add(whiteSquare);
 ```
 
-### Properties
+### Свойство
 
-#### Position: x, y
+#### Координаты: x, y
 ```haxe
 whiteSquare.x = 100;
 whiteSquare.y = 300;
 ```
 
-#### Size: width, height
+#### Размер: width, height
 
-Automatically set in `loadGraphic()` or `makeGraphic()`, changing this will only affect the hitbox of this sprite, use `scale` to change the graphic's size.
+Автоматически устанавливаются после вызова методов `loadGraphic()` или `makeGraphic()`. Изменение значений самостоятельно влияет только на хитбокс спрайта, но не масштаб. Чтобы изменить размер изображения, используйте `scale`.
+
 ```haxe
 // get
 var getWidth = whiteSquare.width;
@@ -53,7 +54,7 @@ whiteSquare.height = 100;
 
 #### Scale
 **(FlxPoint)**
-Change the size of your sprite's graphic. *NOTE: The hitbox is not automatically adjusted, use `updateHitbox()` for that (or `setGraphicSize()`).*
+Изменяет размер графики в спрайте. *Обратите внимание: хитбокс не изменится автоматически при изменении масштаба. Используйте `updateHitbox()` для обновления хитбокса (или `setGraphicSize()`).*
 ```haxe
 // twice as big
 whiteSquare.scale.set(2, 2);
@@ -64,32 +65,32 @@ whiteSquare.scale.set(0.5, 0.5);
 
 #### Offset
 **(FlxPoint)**
-Controls the position of the sprite's hitbox. Likely needs to be adjusted after changing a sprite's width, height or scale.
+Контролирует позицию хитбокса у спрайта. Чаще всего требуется установить после изменения высоты спрайта, ширины или масштаба.
 ```haxe
 whiteSquare.offset.set(50, 50);
 ```
 
 #### Origin
 **(FlxPoint)**
-Rotation axis. **Default: center.**
+Точка вращения. **По умолчанию: center.**
 
-*WARNING: If you change this, the visuals and the collisions will likely be pretty out-of-sync if you do any rotation.*
+*ВНИМАНИЕ: При изменении origin, отображение и столкновения скорее всего рассинхронизируются после задания поворота.*
 ```haxe
-// rotate from top-left corner instead of center
+// задает центр вращения в верхнем левом углу, вместо центра
 whiteSquare.origin.set(0, 0);
 ```
 
 #### ​kill()
 
-This method is useful for when you want to hide a sprite from the stage but keep it available to reuse later. For example you may want to respawn an enemy the player has killed.
+Используется для того, чтобы убрать спрайт со сцены, но не удалять его из памяти для возможного повторного использования. Например, если вы хотите вновь создать на карте врага, которого игрок только что убил.
 
 #### destroy()
 
-This method is destructive to the sprite and should be used when you want to make sure that the sprite will be cleared from memory. It is commonly used inside a FlxState's overridden destroy method.
+Это метод используется для полного удаления объекта из памяти. Часто используется в переопределяемом методе destroy класса FlxState.
 
 ### Animation
 
-Flixel supports spritesheet animation.
+Flixel поддерживает анимацию на спрайтшитах (spritesheet).
 
 ![](../images/02_handbook/sprite-animation-example.png)
 
