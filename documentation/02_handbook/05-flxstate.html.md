@@ -3,31 +3,31 @@ title: "FlxState"
 apiPath: FlxState.html
 ```
 
-This is the basis for your game's levels and menus, each described in a "state" structure. The state is a way of organising your game objects for the state that the game is currently in. For example, when you create level 0 of your game it's much more organized to only have the code for that level, not every level. Also it's good to use switching states to clear your memory, to avoid memory leaks. A typical Flixel game will have a separate `FlxState` class for every level and menu.
+`FlxState` это основа для уровней и экранов меню вашей игры. Каждое состояние описывается в отдельной структуре "state". `FlxState` служит для организации игровых объектов в текущем игровом состоянии. Например, если вы создаете первый уровень для игры, то в `FlxState` будет код только для этого уровня, а не для всей игры. Также при смене состояний, память очищается, что помогает избегать переполнения и утечки памяти. Обычно используют отдельные состояния `FlxState` для каждого уровня и меню.
 
 <img src="../images/02_handbook/flixel-state-0.png" width="100%" />
 
-In each `FlxState` all the FlxSprites are added to be rendered.
+В каждом `FlxState` отображаются все спрайты, которые были добавлены в него.
 
 <img src="../images/02_handbook/flixel-state-1.png" width="100%" />
 
-### Important Methods
+### Важные методы
 
 #### create()
 
-This is where you setup and create all your state's objects; for example your level tilemaps, your player sprites, spawn your initial enemies. Flixel runs this method before it starts to render your state so its the perfect place.
+Метод, в котором вы создаете и настраиваете все объекты для этого состояния. Например тайлмапы для уровня, графику для игрового персонажа, размещаете и инициализируете врагов. Этот метод вызывается до первой отрисовки экрана.
 
 #### add(object:FlxBasic)
 
-This is the place where you add your sprites, tilemaps etc to your state to be rendered. It works similar to OpenFL's display list API with `addChild()`.
+Метод, в котором вы добавляете спрайты и тайлмапы в список отображения. Метод схож с методом `addChild()` в OpenFL.
 
 #### remove(object:FlxBasic)
 
-This is the place where you remove sprites etc you have added to your state. Everything you remove still exists so you can add it back later. If you're not going to use the removed object again you might want to consider removing it from memory by setting it as null for example.
+Метод, в котором вы удаляете спрайты из списка отображения. Все, что вы удалите, все еще будет находиться в памяти, и в дальнейшем вы сможете использовать эти объекты. Если вы не хотите использовать эти объекты в дальнейшем, обнулите ссылку на этот объект и он удалится из памяти.
 
 #### update(elapsed:Float)
 
-This is the place where you can run code on every frame of your game. It's where you setup your input controls, trigger movement and almost all of your gameplay logic.
+Код в этом методе выполняется каждый игровой фрейм. Здесь необходимо настроить ввод пользовательских действий, движение и практически всю игровую логику уровня.
 
 ``` haxe
 package;
@@ -38,18 +38,18 @@ class FlxExampleState extends FlxState
 {
 	override public function create():Void
 	{
-		//create your state objects here
+		//создание игровых объектов
 	}
 
 	override public function update(elapsed:Float):Void
 	{
-		//call super to update the core state class
+		//вызов базового метода для обновления состояния базового класса
 		super.update(elapsed);
 	}
 }
 ```
 
-Here is an example of a simple game state;
+Ниже пример простого игрового состояния:
 
 ``` haxe
 package;
@@ -68,14 +68,14 @@ class FlxExampleState extends FlxState
 
 	override public function create():Void
 	{
-		//create a main player
+		//создание игрового персонажа
 		wizard = new FlxSprite(200, 200, 'assets/player.png');
 		wizard.maxVelocity.set(80, 200);
 		wizard.acceleration.y = 200; // gravity
 		wizard.drag.x = wizard.maxVelocity.x * 4;
 		add(wizard);
 
-		//create a tilemap level
+		//создание графики уровня 
 		level = new FlxTilemap();
 		level.loadMap('assets/level.csv', FlxGraphic.fromClass(GraphicAuto), 0, 0, AUTO);
 		add(level);
@@ -83,7 +83,7 @@ class FlxExampleState extends FlxState
 
 	override public function update(elapsed:Float):Void
 	{
-		//control the player with keyboard
+		//логика управления персонажем с помощью клавиатуры
 		wizard.acceleration.x = 0;
 
 		if (FlxG.keys.pressed.LEFT)
