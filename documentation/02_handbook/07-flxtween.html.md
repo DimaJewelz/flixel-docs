@@ -3,9 +3,9 @@ title: "FlxTween"
 apiPath: tweens/FlxTween.html
 ```
 
-A `FlxTween` allows you to create smooth interpolations and animations easily. Tweening is short for [inbetweening](http://en.wikipedia.org/wiki/Inbetweening): you only have to specify start and end values and the `FlxTween` class will generate all values between those two. If you want to see a `FlxTween` in action, this [tween demo](http://haxeflixel.com/demos/FlxTween/) is available.
+`FlxTween` позволяет создавать анимации и плавную интерполяцию значений. Вам необходимо только указать стартовые и конечные значения, и `FlxTween` сгенерирует все промежуточные значения между ними. Пример использования `FlxTween` показан в [демо-проекте](http://haxeflixel.com/demos/FlxTween/).
 
-For example, if you want to move a `FlxSprite` across the screen, this code snippet would do it:
+Код ниже демонстрирует создание анимации перемещения объекта `FlxSprite` по экрану:
 
 ```haxe
 sprite.x = 200;
@@ -13,16 +13,15 @@ sprite.y = 200;
 
 FlxTween.tween(sprite, { x: 600, y: 800 }, 2);
 ```
+Первый две строки задают стартовую позицию для спрайта, потому что метод `tween()` принимает за стартовые значения текущие положения объекта.
 
-The first two lines specify the start position of the sprite, because the `tween()` method assumes the current position is the starting position.
+Первый параметр - объект, с которым вы хотите взаимодействовать (например анимировать), второй - объект, содержащий параметры, которые вы хотите изменить и их требуемое финальное значение. В этом примере мы хотим переместить спрайт в значение 600 по оси x и 800 по оси y. Третий параметр определяет длительность изменения значений в секундах, в данном случае - 2 секунды.
 
-The first parameter is the object you want to act upon; the second parameter is the map which contains the properties you want to interpolate, and their desired target values. Here, we want to translate the sprite in x to position 600 and in y to position 800. The third parameter specifies the duration of the tween in seconds, which in this case is 2 seconds.
+## Отмена твина
 
-## Cancelling a Tween
+Если вы стартанули твин, используя код выше, он будет выполняться, пока конечные значения не будут достигнуты, затем остановится. Если вы хотите контролировать твин, то можно сохранить ссылку на объект `FlxTween`, который возвращается при вызове метода `tween()`.
 
-If you start a tween using the code above, it will run until the desired values are reached, then stop. As the `tween()` method returns an object of type `FlxTween`, keeping this object in a variable allows you to access the current tween running if you wish to control it.
-
-For example, this code stops the translation of the sprite if the player presses the spacebar of his keyboard:
+Код ниже останавливает перемещение спрайта, если игрок нажал пробел:
 
 ```haxe
 var tween:FlxTween;
@@ -30,7 +29,7 @@ var tween:FlxTween;
 public function new()
 {
 	super();
-	// set up sprite
+	// создание твина и сохранение ссылки на него
 	tween = FlxTween.tween(sprite, { x:600, y:800 }, 2);
 }
 
@@ -43,25 +42,25 @@ override public function update(elapsed:Float)
 }
 ```
 
-## Tweening Options
+## Параметры твина
 
-The `tween()` method takes an optional fourth parameter which is a map of options.
+Метод `tween()` принимает не обязательный четвертый параметр - опции твина.
 
-Possible values are:
+Возможные значения:
 
-- `type`: choose one of these:
+- `type`: тип твина:
 
-	- **FlxTween.ONESHOT**: stops and removes itself from its core container when it finishes;
-	- **FlxTween.PERSIST**: stops when it finishes. Unlike **ONESHOT**, this type of tween stays attached to the core container when it finishes. This means you can keep a reference to this tween and call `start()` whenever you need it. This does not work with **ONESHOT**;
-
-	- **FlxTween.LOOPING**: restarts immediately when it finishes;
-	- **FlxTween.PINGPONG**: plays tween "hither and thither". This is like **LOOPING**, but every second execution is in reverse direction;
+	- **FlxTween.ONESHOT**: останавливается и удаляет себя из основного контейнера, когда твин завершился;
+	- **FlxTween.PERSIST**: останавливается, когда твин завершился. В отличие от **ONESHOT**, этот тип твина остается в основном контейнере после завершения. Это значит, что вы можете сохранить ссылку на этот твин и запустить его через `start()` в любое время (не будет работать с **ONESHOT**);
 	
-	- **FlxTween.BACKWARD**: plays tween in reverse direction.
+	- **FlxTween.LOOPING**: сразу после завершения, стартует заново;
+	- **FlxTween.PINGPONG**: проигрывается "туда и обратно". Похоже на **LOOPING**, но выполнение происходит в обратном направлении;
+	
+	- **FlxTween.BACKWARD**: проигрывается в обратном направлении.
+	
+- `onComplete`: функция будет вызвана, как только твин завершился. Вызывается каждый раз при завершении одного из циклов (у **LOOPING** и **PINGPONG**). Функция должна принимать параметр `FlxTween` и ничего не возвращать.
 
-- `onComplete`: a callback function, which is called once the tween has finished. This is called every time the tween has finished one execution and comes in handy for repeating tweens (**LOOPING** and **PINGPONG**). The method must take a `FlxTween` and return nothing.
-
-- `ease`: an optional easer function. This can be used to make the beginning and end of a tween smoother. The [`FlxEase`](http://api.haxeflixel.com/types/flixel/tweens/FlxEase.html) class provides many static methods for this which should cover most cases. The following list shows all functions from `FlxEase`. In all of these, `In` can be replaced by `Out` or `InOut`, depending on where you want to apply the easing effect: at the beginning of the animation, at the end or at both sides.
+- `ease`: опциональная функция изинга. Используется для задания разных фунций изинга. Класс [`FlxEase`](http://api.haxeflixel.com/types/flixel/tweens/FlxEase.html) имеет много статичных методов для изинга. Список ниже демонстрирует все изинги для `FlxEase`. В допополнение к этому, `In` может быть заменен на `Out` или `InOut`, в зависимости от того, где вы хотите применить изинг: в начале анимации, в конце или с обоих сторон.
 
 	- `backIn`
 	- `bounceIn`
@@ -74,17 +73,17 @@ Possible values are:
 	- `quintIn`
 	- `sineIn`
 
-- `startDelay`: time to wait before starting this tween, in seconds.
+- `startDelay`: время до старта твина, в секундах.
 
-- `loopDelay`: time to wait before this tween is repeated, in seconds. This only applies to **LOOPING** and **PINGPONG**.
+- `loopDelay`: время до старта следующего повторения твина, в секундах. Актуально только для **LOOPING** и **PINGPONG**.
 
-For example:
+Например:
 
 ```haxe
 public function new()
 {
 	super();
-	// set up sprite
+	// устанавливаем начальные значения для спрайта и стартуем твин
 	sprite.x = 200;
 	sprite.y = 200;
 	FlxTween.tween(sprite, { x: 600, y: 800 }, 2, { type: FlxTween.PINGPONG, ease: FlxEase.quadInOut, onComplete: changeColor, startDelay: 1, loopDelay: 2 });
@@ -92,34 +91,34 @@ public function new()
 
 function changeColor(tween:FlxTween):Void
 {
-	// change the color of the sprite here
+	// здесь можно поменять цвет спрайта
 }
 ```
 
-This code moves the sprite constantly between the two points (200|200) and (600|800), smoothly accelerating and decelerating. Each time the sprite arrives at one of those two points, its color changes. The animation starts after 1 second and then the sprite pauses at each point for 2 seconds.
+Код выше перемещает спрайт между двумя точками(200|200) и (600|800) плавно ускоряясь и замедляясь. Каждый раз, когда спрайт приходит в конечную точку, его цвет будет меняться. Анимация начинается через 1 секунду, и затем спрайт становится на паузу в каждой конечной точке на 2 секунды.
 
-## Special Tweens
+## Специальные твины
 
-There are many more tweening methods in `FlxTween`, which are used for special cases:
+Существует много других методов у `FlxTween`, которые используются в определенных ситуациях:
 
 #### `color()`
 
-Tweens the red, green and blue part of a color independently, because normal tweening would screw up the colors.
+Меняет красную, зеленую и синюю составляющие цвета независимо. Обычный твин работал бы непредсказуемо.
 
-Usage: **color**(Sprite : `FlxSprite`, Duration : `Float`, FromColor : `Int`, ToColor : `Int`, ?FromAlpha : `Float`, ?ToAlpha : `Float`, ?Options : `TweenOptions`)
+Использование: **color**(Sprite : `FlxSprite`, Duration : `Float`, FromColor : `Int`, ToColor : `Int`, ?FromAlpha : `Float`, ?ToAlpha : `Float`, ?Options : `TweenOptions`)
 
-Notice that unlike in the `tween()` method, the duration is specified before the color values and you have to enter the start and the end value. The options are the same as described above.
+Обратите внимание, что в отличие от метода `tween()`, длительность задается перед значением цвета, и необходимо указать стартовое и финальное значения. Опции твина аналогичный стандартному `tween()`.
 
 #### `angle()`
 
-This method is for tweening the angle of a `FlxSprite`.
+Метод для изменения угла поворота объекта `FlxSprite`.
 
-Usage: **angle**(Sprite : `FlxSprite`, FromAngle : `Float`, ToAngle : `Float`, Duration : `Float`, ?Options : `TweenOptions`)
+Использование: **angle**(Sprite : `FlxSprite`, FromAngle : `Float`, ToAngle : `Float`, Duration : `Float`, ?Options : `TweenOptions`)
 
-#### Motion and Path Tweens
+#### Движения и пути
 
-The `FlxTween` class also contains the methods `linearMotion()`, `quadMotion()`, `cubicMotion()` and `circularMotion()`, which make objects follow straight lines, smooth paths or circles.
+Класс `FlxTween` также содержит методы `linearMotion()`, `quadMotion()`, `cubicMotion()` и `circularMotion()`, которые позволяют объекту следовать по прямой, кривым или окружностям.
 
-The methods `linearPath()` and `quadPath()` can be used for longer paths defined through an array of points, instead of a fixed number of points.
+Методы `linearPath()` и `quadPath()` можно использовать для более длинных путей из массива точек, вместо заданного фиксированного числа точек.
 
-If you want to use these methods please refer to the [`FlxTween` API](http://api.haxeflixel.com/flixel/tweens/FlxTween.html). 
+Если вы хотите использовать эти методы, ознакомьтесь с [документацией `FlxTween`](http://api.haxeflixel.com/flixel/tweens/FlxTween.html). 
