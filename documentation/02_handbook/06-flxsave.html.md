@@ -7,26 +7,26 @@ apiPath: util/FlxSave.html
 import flixel.util.FlxSave;
 ```
 
-HaxeFlixel gives you the `FlxSave` class to manage saving and loading your game's data. You might use it to save and load a high score table, or the position and status of the player and enemies, or custom settings the player has selected. Like most of HaxeFlixel, `FlxSave` is cross-platform in functionality.
+HaxeFlixel предоставляет использование класса `FlxSave` для загрузки и сохранения состояния вашей игры. Его можно использовать для загрузки и сохранения таблицы лидеров, позиций и статуса игрока и врагов, либо настроек, которые выбрал пользователь. `FlxSave` поддерживается на всех платформах (как и большинство функций в HaxeFlixel).
 
-To use `FlxSave` you need a variable typed to that class. You can create your own variable (perhaps in your registry class, in your gameplay `FlxState`, or as a local variable in your save/load functions). You may also use the one that HaxeFlixel itself uses (`FlxG.save`).
+Чтобы использовать `FlxSave`, вам нужно добавить переменную в этот класс. Вы можете использовать собственную переменную (это возможно сделать как в главном классе, так и в `FlxState`, либо как локальную переменную в функциях save/load). Также вы можете использовать встроенную переменную, которую сам использует HaxeFlixel (`FlxG.save`).
 
-The example code used below is largely taken from the [HaxeFlixel save demo](http://haxeflixel.com/demos/Save/). If you have already installed HaxeFlixel, then to install the demo project just open a command line utility, navigate to the folder you would like to install into, and enter the command flixel create Save, or download the source via GitHub using the link on the demo web page.
+Пример ниже взят из [демо-проекта сохранения в HaxeFlixel](http://haxeflixel.com/demos/Save/). Если у вас уже установлен HaxeFlixel, для установки демо проектов введите в командной строке `haxelib install flixel-demos` или [скачайте исходники через GitHub](https://github.com/HaxeFlixel/flixel-demos/tree/master/Features/Save/source).
 
 #### Saving
 
-So how can you save some of your game data? Once you have your variable, you will need to initialize, then bind it:
+Рассмотрим пример для сохранения данных игры. Как только вы создали переменную для хранения, необходимо ее инициализировать и забиндить:
 
 ``` haxe
 _gameSave = new FlxSave(); // initialize
 _gameSave.bind("SaveDemo"); // bind to the named save slot
 ```
 
-Note the string "SaveDemo". This is how HaxeFlixel tracks what save slot you are binding to in local storage. If you want to have multiple saves, you will probably want to define a series of strings to identify each slot, eg. "SaveSlot1", "SaveSlot2", etc. and bind to the appropriate one. For more information on using multiple save slots, take a look at [Wolfgang's article](https://web.archive.org/web/20150116114005/http://www.funstormgames.com/blog/2012/01/flixel-advanced-saving-tips-tricks/) on the subject for AS3 Flixel, but keep in mind that [the AS3 syntax is a little different from Haxe](http://www.openfl.org/archive/developer/documentation/actionscript-developers/).
+Обратите внимание на строку "SaveDemo". Под этим именем HaxeFlixel определяет слот для хранения в локальном хранилище. Если вам нужно несколько слотов для хранения, определите несколько имен для каждого слота, например "SaveSlot1", "SaveSlot2" и т.д., не забудьте забиндить все имена.
 
-Note: If you plan to use `FlxG.save` you can skip the initializing and binding steps, as HaxeFlixel has done it for you.
+Если вы хотите использовать фронтенд `FlxG.save`, то можете пропустить шаги выше, т.к. HaxeFlixel делает их автоматически.
 
-Once bound, the save is essentially "live". To write to it you use the .data property of variable, treating it as an [object](https://haxe.org/manual/types-dynamic.html):
+После инициализации, сохранение готово к использованию. Чтобы сделать сохранение, используйте свойство .data, обращаясь к нему как к [Dynamic](https://haxe.org/manual/types-dynamic.html):
 
 ``` haxe
 _gameSave.data.boxPositions = new Array<FlxPoint>();
@@ -34,36 +34,37 @@ _gameSave.data.boxPositions.push(box.getPosition());
 
 _gameSave.data.enemy = myEnemy;
 
-// save data
+// сохраняем данные
 _gameSave.flush();
 ```
 
 ##### flush()
-Writes the local shared object to disk immediately.
-**Required on non-Flash targets.**
+Немедленно записывает данные из памяти на диск.
+**Обязателен для всех платформ, кроме Flash**
 
-##### Serialization
-In certain cases you may need to [serialize and unserialize](https://haxe.org/manual/std-serialization.html) your data (fancy words for "take my data and turn it into a specially formatted string, or back into data") to avoid errors, but you may want to try it without serialization unless you experience problems.
+##### Сериализация
 
-#### Loading
+В некоторых случаях вам может потребоваться [сериализовать и десериализовать](https://haxe.org/manual/std-serialization.html) ваши данные (говоря более простым языком, "взять данные и преобразовать их в специальную строку и обратно) чтобы избежать ошибок. Однако если не возникает ошибок, вы можете попробовать сохранение без сериализации.
 
-In order to retrieve your saved data, you simply make sure you have a correctly bound `FlxSave` variable and read each value from the `.data` property.
+#### Загрузка
+
+Чтобы получить сохраненные данные, вам необходимо иметь проинициализированный `FlxSave` и прочитать каждое значение из свойства .data.
 
 ``` haxe
 var position = _gameSave.data.boxPositions[tempCount];
 box.setPosition(position.x, position.y);
 ```
 
-This means that, depending on your save needs, when loading a save slot you may need to loop through a long list of data to assign each of the values back to it's correct home.
+Таким образом, вам необходимо через цикл пройтись по каждому свойству в .data и присвоить их значения нужной переменной в вашем коде.
 
 #### Existing save data
 
-When you save data to a given `FlxSave` save slot there is, of course, the possibility that data already exists in that slot (hopefully your saved data from an earlier save). One way to test for this is to check if one of your variables is null. If save data does already exist and you plan to save an entire fresh set of new data, then to avoid carrying over values from an earlier save you may wish to either go through and initialize or reset each of the potentially saved variables to some default value (or null) before saving your new set, or you may wish to erase the save data entirely (probably not a good idea if you're using `FlxG.save`).
+Когда вы сохраняете данные в заданный слот `FlxSave`, возможно, что в этом слоте уже есть данные. Чтобы проверить это - необходимо проверить одну из созданный переменных на null. Если сохраненные данные уже имеются, перед новым сохранением желательно стереть все предыдущие данные, чтобы значения свойств из предыдущего сохранения не остались в текущем сохранении. Чтобы это сделать можно каждое свойство сбросить в null (или дефолтное значение) или вы можете стереть данные полностью (вероятно, не лучшй способ при использовании `FlxG.save`).
 
-`FlxSave` provides an `.erase()` method to help with this process, but keep in mind that calling it on a bound `FlxSave` variable will: immediately erase all the data in .data, save the slot in the erased state (any earlier data is now completely gone), and also destroy the binding to the save slot. This last point is important to note, as after the binding has been broken `FlxSave` may still let you assign to .data and even call other methods without errors to indicate that the data is not actually being stored at all. So if you do use the `.erase()` method, don't forget to call `.bind()` again before you save or load any further data.
+`FlxSave` имеет метод `.erase()`, который немедленно очищает все данные в .data, оставляет слот в очищенном состоянии (предыдущие данные полностью удалятся), а также удаляет бинд для слота сохранения. Последнее очень важно помнить, т.к. после удаления бинда `FlxSave` может все еще давать возможность обращаться к .data и даже вызывать другие методы без каких-либо нотификаций и том, что эти данные не сохранятся. Поэтому, если вы используете метод `.erase()`, не забывайте затем снова вызывать `.bind()` до того, как вы запишите или загрузите новые данные.
 
 #### Other methods
 
-In the Save demo the application creates and binds a `FlxSave` variable when the demo state initializes (see `PlayState#create()`), and then leaves this variable accessible for loading and saving from that point on. This allows you to continually update the save object when necessary, but it's equally valid to create, initialize, and bind a FlxSave variable only when loading and saving. In that case you should familiarize yourself with `.close()` and `.destroy()`for safe and efficient handling of your `FlxSave`.
+В демо-проекте приложение создает и биндит переменную в `FlxSave` когда инициализируется начальное состояние `PlayState` в методе `create()`. Оттуда эта переменная доступна для загрузки и сохранения. Это позволяет постоянно обновлять объект сохранения, когда это необходимо. Также верно создавать, инициализировать и биндить переменную в FlxSave только при загрузке и сохранении. В этом случае вам следует ознакомиться с методами `.close ()` и `.destroy ()` для безопасной и эффективной обработки вашего `FlxSave`.
 
-To review these additional methods and check out any other `FlxSave` functionality in more detail, take a look at the [API documentation](http://api.haxeflixel.com/flixel/util/FlxSave.html) or look at the class definition itself (currently under the util package in the flixel library).
+Дополнительные методы и функционал класса `FlxSave` доступен в [документации](http://api.haxeflixel.com/flixel/util/FlxSave.html). Также вы можете самостоятельно ознакомиться с определением класса `FlxSave` (пакет flixel.utils).
