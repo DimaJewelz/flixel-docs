@@ -1,8 +1,8 @@
 ```
-title: "HaxeFlixel Targets"
+title: "Таргеты HaxeFlixel"
 ```
 
-HaxeFlixel currently supports the following targets through OpenFL:
+HaxeFlixel поддерживает следующие таргеты, благодаря OpenFL:
 
 #### [Desktop](/documentation/desktop-targets)
 
@@ -20,7 +20,7 @@ HaxeFlixel currently supports the following targets through OpenFL:
 - Flash
 - HTML5
 
-Using these targets requires the appropriate SDK's and system setup assisted through the Lime setup commands.
+Использование этих таргетов требует определенных SDK и настройки вашей системы через специальные команды Lime.
 
 ```
 lime setup windows
@@ -30,7 +30,7 @@ lime setup android
 
 ### HTML5
 
-#### General HTML5 Guidelines
-- **Text**: For now, you might prefer using [bitmap fonts](http://haxeflixel.com/demos/FlxBitmapTextField/) to avoid text issues. With regular fonts, you may favor larger text size (>12) in order to avoid blurriness, and try some [manual adjustments](https://github.com/HaxeFlixel/flixel/issues/1024) if you have a scaling problem (or when you are trying to embed fonts, which is not supported).
-- **Audio**: You should use regular .ogg files . Though .mp3 and .wav files are supported, SoundJS may not recognise them and might stop your project from running until you delete/replace them.
-- **Particles**: You should keep the particle count low and not expect much in terms of performance.
+#### Общие правила HTML5
+- **Текст**: на данный момент проще всего использовать [bitmap fonts](http://haxeflixel.com/demos/FlxBitmapTextField/) чтобы избежать проблем с отображением текста. С обычными шрифтами вы можете попробовать увеличить размер текста (> 12) во избежание размытости, а также некоторые [настройки] (https://github.com/HaxeFlixel/flixel/issues/1024), если у вас есть проблема масштабирования (или когда вы пытаетесь внедрить шрифты, которые не поддерживаются).
+- **Аудио**: необходимо использовать файлы .ogg. Хотя .mp3 и .wav файлы также поддерживаются, SoundJS может не распознать их и может затруднить запуск проекта, пока вы не удалите/замените их.
+- **Частицы**: необходимо использовать небольшое количество частиц, также не расчитывайте на высокую производительность.
