@@ -1,10 +1,10 @@
 ```
-title: "HaxeFlixel Conditionals"
+title: "HaxeFlixel условная компиляция"
 ```
 
-### What is "conditional compilation"?
+### Что такое "условная компиляция"?
 
-[Conditional compilation flags](http://haxe.org/manual/lf-condition-compilation.html) are a powerful feature Haxe offers to optimize your code by only compiling certain parts of it. For example, the following pseudo-code optimizes inputs based on the target platform:
+[Флаги условной компиляции](http://haxe.org/manual/lf-condition-compilation.html) довольно мощная вещь, которая позволяет оптимизировать ваш код, компилируя только часть его. Например, следующий псевдокод оптимизирует ввод на основе целевой платформы:
 
 ``` haxe
 #if (web || desktop)
@@ -21,56 +21,56 @@ touchControls();
 #end
 ```
 
-Basically, this means that for web or desktop targets, we want to have mouse and keyboard controls. In case of a mobile target, we want touch input. Like you can see, these so-called defines can also be nested: We only  want gamepad controls to be available on non-web targets (line 4). So, all in all, these defines can be used largely like traditional if-statements, except their syntax varies slightly.
+В целом это означает, что для таргетов web или desktop мы хотим управлять игрой с мыши и клавиатуры. В случае с таргетом под mobile, нам пригодится ввод с помошью тачей. Как вы можете видеть, эти так называемые обозначения также могут быть вложенными: мы хотим чтобы контроллер геймпада был доступен только для desktop таргета. В целом эти обозначения могут использоваться как традиционные if-выражения, за исключением того, что их синтаксис немного меняется.
 
-For more information on what defines are available, by default check out the [OpenFL documentation](http://www.openfl.org/archive/developer/documentation/conditional-compilation/) on this topic.
+Для более подробной информации о том, какие еще обозначения доступны, ознакомьтесь с [документацией OpenFL](http://www.openfl.org/archive/developer/documentation/conditional-compilation/).
 
-### HaxeFlixel specific defines
+### HaxeFlixel пользовательские обозначения
 
-If you had a look at the OpenFL documentation, you might have found out that you can also set your own defines. When working with OpenFL, it's convenient to do so in the Project XML file.
-HaxeFlixel makes use of this feature and allows you to optimize your game using the following defines (a list of them can also be found in the [template](https://github.com/HaxeFlixel/flixel-templates/blob/master/default/Project.xml.tpl)):
+Если вы посмотрели документацию по OpenFL, то возможно заметили, что вы можете создавать собственные обозначения. При работе с OpenFL это удобно делать в XML файле проекта.
+HaxeFlixel использует эту функцию и предоставляет вам возможность оптимизировать игру, использую следующие обозначения (полный список доступен в [шаблоне](https://github.com/HaxeFlixel/flixel-templates/blob/master/default/Project.xml.tpl)):
 
 ```
-// Example xml node to enable to Flixel record system.
+// Пример узла xml дял включения функционала записи Flixel.
 <haxedef name="FLX_RECORD" />
 ```
 
 #### FLX_RECORD
 
-Flixel features a powerful recording / playback feature which captures mouse and keyboard input. Since it's used rarely, we decided that it makes sense to turn it off by default. Setting this define however will enable it again.
+Flixel предоставляет удобный функицонал для записи и воспроизведения событий ввода мыши и клавиатуры. Т.к. эта функция используется не так часто, мы отключили ее по умолчанию. Установка этого флага включает эту функицю.
 
 #### FLX_MOUSE_ADVANCED
 
-This define is required for middle and right mouse button input. On the flash target, a minimum flash player version of 11.2 is required. Listening to right click input will also disable the right-click menu of the flash player. There is currently no HTML5 support for this feature.
+Этот флаг требуется для включения средней и правой кнопки мыши. Для flash таргета необходима минимальная версия пллера 11.2. Включение этой функции также делает невозможным вызов контекстного меню flash плеера по клику правой кнопки мыши. Для таргета HTML5 пока эта функция не поддерживается.
 
 #### FLX_NO_NATIVE_CURSOR
 
-By default, flixel uses the flash [native cursor API](http://www.adobe.com/devnet/flashplayer/articles/native-mouse-cursors.html). This gets rid of the almost unbearable mouse lag that is unavoidable otherwise. This define allows you to disable that - reasons for this might be that you want to target a flash player version older than 10.2 or that you need to use a cursor bigger than 32x32, which is not possible using the native cursor API.
+По умолчанию Flixel использует [API курсора flash таргета](http://www.adobe.com/devnet/flashplayer/articles/native-mouse-cursors.html). Это избавляет от задержки курсора, что в противном случае неизбежно. Этот флаг позволяет вам отключить эту функцию (например если вы хотите использовать версию флеш плеера ниже чем 10.2 или вам нужен курсор больше чем 32х32 пикслея, что невозможно, используя стандартный API).
 
 #### FLX_NO_MOUSE
 
-This allows you to optimize your game by compiling it without any mouse-related code, which can make sense for mobile targets. This is why in the template, `if="mobile"`  is added to the haxedef set tag. Keep in mind that this might require you to use conditionals in your own code for anything related to `FlxG.mouse`, which does not exist if this define is set.
+Этот флаг позволяет вам полностью отключить любой код, который завязан на вводе с мыши (например для мобильных платформ). Поэтому в шаблоне добавлена конструкция `if="mobile"`. Имейте в виду, что для этого может потребоваться использование условных выражений в вашем собственном коде для чего-либо, связанного с фронтендом `FlxG.mouse`, которого не существует, если включен этот флаг.
 
 #### FLX_NO_KEYBOARD
 
-This allows you to optimize your game by compiling it without any keyboard-related code, which can make sense for mobile targets. This is why in the template, `if="mobile"`  is added to the haxedef set tag. Keep in mind that this might require you to use conditionals in your own code for anything related to `FlxG.keyboard` or `FlxG.keys`, which do not exist if this define is set.
+Этот флаг позволяет вам полностью отключить любой код, который завязан на вводе с клавиатуры (например для мобильных платформ). Поэтому в шаблоне добавлена конструкция `if="mobile"`. Имейте в виду, что для этого может потребоваться использование условных выражений в вашем собственном коде для чего-либо, связанного с фронтендами `FlxG.keyboard` или `FlxG.keys`, которых не существует, если включен этот флаг.
 
 #### FLX_NO_TOUCH
 
-This allows you to optimize your game by compiling it without any touch-related code, which can make sense for desktop targets. This is why in the template, `if="desktop"`  is added to the haxedef set tag. Keep in mind that this might require you to use conditionals in your own code for anything related to `FlxG.touches`, which does not exist if this define is set.
+Этот флаг позволяет вам полностью отключить любой код, который завязан на вводе с помощью тачей (например для таргетов под desktop). Поэтому в шаблоне добавлена конструкция `if="desktop"`. Имейте в виду, что для этого может потребоваться использование условных выражений в вашем собственном коде для чего-либо, связанного с фронтендом `FlxG.touches`, которого не существует, если включен этот флаг.
 
 #### FLX_NO_GAMEPAD
 
-This allows you to optimize your game by compiling it without any gamepad-related code. Keep in mind that this might require you to use conditionals in your own code for anything related to `FlxG.gamepads`, which does not exist if this define is set.
+Этот флаг позволяет вам полностью отключить любой код, который завязан на вводе с помощью геймпада. Имейте в виду, что для этого может потребоваться использование условных выражений в вашем собственном коде для чего-либо, связанного с фронтендом `FlxG.gamepads`, которого не существует, если включен этот флаг.
 
 #### FLX_NO_SOUND_TRAY
 
-This disables the flixel core sound tray, which appears whenever your adjust the volume via the 0 (mute the game), + or - keys. Note that this does not disable the ability to control the game's volume using these hotkeys, just the soundtray itself. You can disable volume control entirely by setting `FlxG.sound.muteKeys`, `FlxG.sound.volumeUpKeys` and `FlxG.sound.volumeDownKeys` to `null`.
+Этот флаг выключает визуальное окно, которое появляется, когда вы прибавляете / убавляете громкость или выключаете звук. Обратите внимание, что сам функционал управлением звука не отключается. Вы можете полностью отключить регулировку громкости, установив `FlxG.sound.muteKeys`, `FlxG.sound.volumeUpKeys` и `FlxG.sound.volumeDownKeys` в `null`.
 
 #### FLX_NO_FOCUS_LOST_SCREEN
 
-Flixel automatically pauses the game when it loses focus and shows its so-called "focus lost screen", which is basically an overlay darkening the screen area with a white "play-button" in the middle. Using this define disables that screen, but not the feature to automatically pause - use the `FlxG.autoPause` Bool for that.
+Flixel автоматически ставит игру на паузу, когда игра теряет фокус и показывает т.н. "Экран потери фокуса", которй фактически затемняет экран и показывает кнопку "play" в центре. Этот флаг убирает данный экран, но не функционал постановки на паузу при потере фокуса. Используйте `FlxG.autoPause` для этого.
 
 #### FLX_NO_DEBUG
 
-This disables the flixel core debugger, which you can toggle using the \ and \` keys. It makes sense to do so for release build, which is why `unless="debug"`  is added to this tag in the template. It basically means that the flixel debugger is disabled when compiling a release, and enabled when compiling a debug build.
+Этот флаг отключает дебаггер, который вы можете показывать, используя клавиши \ и \`. Это актуально для релиз билдов, поэтому в шаблон конфигурации добавлен `unless="debug"`. Фактически это означает, что дебаггер отключен, когда вы компилируете release билд, и включен при компиляции debug билда.
