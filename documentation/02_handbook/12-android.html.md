@@ -4,39 +4,39 @@ title: "Android"
 
 <img src="/images/targets/android-logo.svg" width="160px" style="float:left; padding:10px" />
 
-The Android target makes use of a chain of frameworks to compile your native Android game from Haxe code. OpenFL uses the [Hxcpp](http://lib.haxe.org/p/hxcpp) and the [Android NDK](http://developer.android.com/tools/sdk/ndk/index.html) specifically so no virtual machine is involved.
+Таргет Android использует несколько фреймворков для компиляции в нативный код под Android из вашего кода на Haxe. OpenFL использует [Hxcpp](http://lib.haxe.org/p/hxcpp) и [Android NDK](http://developer.android.com/tools/sdk/ndk/index.html), поэтому виртуальная машина не используется.
 
-To set up android, run `lime setup android` after installing HaxeFlixel. You can choose to download necessary components (eg. Android SDK and NDK) or use existing installations.
+Для настройки таргета под Android, введите команду `lime setup android` после установки HaxeFlixel. Вы можете скачать необходимые компоненты (такие как Android SDK и NDK) или использовать существующие.
 
-The Haxe compiler uses its ```cpp``` target to compile your ```Haxe``` code for the [LibSDL](http://libsdl.org) OpenGL library so that the Android NDK can then use this "native-code" for your Android game. You can read more about the Android NDK from Google [here](http://developer.android.com/tools/sdk/ndk/index.html), however this process is completely automated by [OpenFL](http://openfl.org). Android is part of the cpp group of targets and when developers mention ```cpp``` the topic may be relevant to HaxeFlixel Android.
+Компилятор Haxe использует ```cpp``` таргет, чтобы скомпилировать ваш ```Haxe``` код для библиотеки OpenGL [LibSDL](http://libsdl.org) таким образом, чтобы Android NDK затем мог использовать этот нативный код для вашей игры на Android. Более подробно можно ознакомиться с Android NDK [здесь](http://developer.android.com/tools/sdk/ndk/index.html). Однако этот процесс полностью автоматизирован с помощью [OpenFL](http://openfl.org). Android является частью группы таргетов под cpp. Поэтому когда разработчики упоминают ```cpp```, эта тема может иметь отношение к HaxeFlixel Android.
 
-With [OpenFL](http://openfl.org) using native-code and OpenGL with [LibSDL](http://libsdl.org), the rendering methods are different to where Flixel started with Flash. Android uses GPU accelerated Texture Batching for the best possible performance on mobile devices.
+Благодаря использованию [OpenFL](http://openfl.org) и OpenGL с [LibSDL](http://libsdl.org), способы отображения отличаются от первоначальных с использованием Flash. Android использует т.н. `Texture Batching` в графическом ускорителе для лучшей производительности на мобильных устройствах.
 
-### Conditionals
+### Условные выражения
 
 ```
 #if cpp
-//your android code
+//код для android
 #end
 
 #if android
-//your android code
+//код для android
 #end
 
 #if mobile
-//your android code
+//код для android
 #end
 ```
 
-### Project XML settings
+### Настройки XML файла проекта
 
-Mobile platforms can use a window width and height of 0, which is a special value that uses the full resolution of the current display.
+Mobile таргеты могут использовать значение ширины и высоты окна равным 0. Это специальное значение, которое означает полноэкранное отображение.
 
 ```
 <window width="0" height="0" background="#FFFFFF" fps="60" />
 ```
 
-OpenFL also exposes the following specific settings for the Android target:
+OpenFL также предоставляет следующие специальные настройки для desktop таргетов:
 
 ```
 <android target-sdk-version="17" />
@@ -45,7 +45,7 @@ OpenFL also exposes the following specific settings for the Android target:
 <window orientation="portrait" /> || <window orientation="landscape" if="cpp"/>
 ```
 
-Custom PNG icons: (Check [Iconography / Android Developers](http://developer.android.com/design/style/iconography.html) for more info)
+PNG иконки приложения: (для более подробной информации посмотрите статью [дизайн иконок](http://developer.android.com/design/style/iconography.html))
 
 ```
 <icon path="36.png" size="36" if="android" />
@@ -54,21 +54,21 @@ Custom PNG icons: (Check [Iconography / Android Developers](http://developer.and
 <icon path="96.png" size="96" if="android" />
 ```
 
-### Compile Commands
+### Команды компиляции
 
-Sublime Text, Flash Develop and IntelliJ Idea support Android compilation through their GUI.
+Редакторы Sublime Text, Flash Develop и IntelliJ IDEA поддерживают компилирование под Android через интерфейс.
 
-#### Command line
+#### Командная строка
 
-The basic command to compile and test Android:
+Базовая команда для компилирования и тестирования под Android:
 
 ```
 lime test android
 ```
 
-Run this command from the root folder of your project; the default project.xml will be used automatically. For the test command to run on your device you should have it connected with ADB working correctly.
+Запустите эту команду в корневой папке вашего проекта, по умолчанию будет использован файл настроек project.xml. Для запуска и тестировния на устройстве оно должно быть подключено с рабочим ADB.
 
-If you want to use the Android simulator, add `-simulator` when running/testing. Be sure your virtual device is API >=15 and has GPU enabled.
+Если вы хотите использовать Android симулятор, добавьте `-simulator` в команду запуска/тестирования. Убедитесь, что API виртуального устройства выше 14 и включено GPU.
 
 ```
 lime test android -simulator
