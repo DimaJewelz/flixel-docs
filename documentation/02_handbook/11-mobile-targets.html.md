@@ -1,28 +1,28 @@
 ```
-title: "Mobile Targets"
+title: "Таргеты под Mobile"
 ```
 
-With the penetration of mobile devices in the world ignoring mobile targets for your games and applications is ignoring a huge audience.
+В связи с ростом популярности мобильных устройств в мире, игнорирование этой платформы влечет за собой потерю огромного количества аудитории.
 
-Mobile devices even though amazing have particular bottlenecks not present on desktop targets. The bottleneck most significant to HaxeFlixel games is the low powered CPU. HaxeFlixel's answer to this is to make use of GPU acceleration provided by OpenFL.
+Мобильные устройства имеют некоторые ограничения, не выраженные на таргетах для desktop. Узким местом, наиболее значимым для игр на HaxeFlixel, является низкомощный CPU. Решение этого - использование графического ускорителя GPU, которое предоставляет OpenFL.
 
 #### CPU
 
-The processing power of mobile CPUs are often the biggest bottleneck when compared to a desktop target. Mobile CPUs are constrained by low power architectures and are simply not as powerful. Manipulating pixels like bitmap filters do with Flash software rendering is simply too slow for mobile devices. HaxeFlixel has answered this for Flixel games to use the GPU for rendering your sprites instead of using software rendering like its done with Flash.
+Мощность процессора на мобильных устройствах чаще всего проигрывает сравнению с таргетами под desktop. Мобильные процессоры ограничены архитектурой с низким энергопотреблением и просто-напросто недостаточно мощные. Управление пикселями, как например растровые фильтры, отображаемые при помощи Flash - слишком медленное для мобильных устройств. Поэтому HaxeFlixel использует GPU для рендера спрайтов, вместо использования программного рендера, как это выполнено во Flash.
 
-#### Memory
+#### Память
 
-Memory on mobile devices as you can imagine does not compare to the desktop. When we talk about memory it relates to how many textures your game can store to render as well as the amount of raw data and objects in your game's runtime state. Memory lets you cache objects for quick runtime access instead of creating objects during your gameplay which may cause skipping and low performance. This is why HaxeFlixel uses destroy method and has implemented support for texture atlas'.
+Память на мобильных устройствах, как вы понимаете, также не сопоставима с desktop. Когда мы говорим о памяти, мы имеем в виду - как много текстур ваша игра может хранить для отображения, а также количество данных и объектов в вашей игре в режиме выполнения. Память позволяет вам кешировать объекты для быстрого доступа во время выполнения, вместо создания объектов на лету, что может вызвать лаги и низкую производительность. Вот почему HaxeFlixel использует метод destroy и реализацию поддержки текстурного атласа.
 
-#### Texture Size Limits
+#### Ограничение размера текстуры
 
-Due to the nature of mobile hardware there are often maximum sizes for textures that are much lower than desktop hardware. There is no definitive guide to size limits as it depends on the hardware of each device individually.
+Из-за архитектуры мобильного "железа" часто существует ограничение на максимальные размеры текстур, которые намного меньше, чем для desktop. Единого руководства по размерам и ограничениям не существует, т.к. они зависят индивидуально от каждого устройства.
 
-Here you can see an overview of size limits obtained from WebGL browsers [http://webglstats.com/#h_texsize](http://webglstats.com/#h_texsize)
+Вы можете ознакомиться с обзором на ограничения размера, полученные в WebGL браузерах [http://webglstats.com/#h_texsize](http://webglstats.com/#h_texsize).
 
-You can also look up a device on [glxbench.com](http://glxbench.com), under the GL config tab look for `GL_MAX_TEXTURE_SIZE`.
+Также вы можете поискать устройство на [glxbench.com](http://glxbench.com), во складке "GL config" ищите `GL_MAX_TEXTURE_SIZE`.
 
-Here is an overview of the variety in devices, feel free to add to the list;
+Ниже краткий список различных устройств (вы можете добавлять новые устройства в список);
 
 <table border="1" cellpadding="1" cellspacing="1" class="table table-hover table-bordered">
 	<tbody>
