@@ -1,34 +1,34 @@
 ```
-title: "Desktop Targets"
+title: "Desktop таргет"
 ```
 
-The desktop targets of HaxeFlixel run on all mainstream operating systems (OSX, Windows and Linux). They are all compiled to C++ through the Hxcpp library and are rendered through interfacing with the [Simple DirectMedia Layer.](http://libsdl.org) The code for this part of the library is developed through [NME ](https://github.com/haxenme/NME)which provides dll libs that openfl interfaces with.
+Таргет desktop поддерживает все основные операционные системы (OSX, Windows и Linux). Все они компилируются в C++ через библиотеку Hxcpp и выполняются посредством взаимодействия с [Simple DirectMedia Layer](http://libsdl.org). Код для этой части библиотеки разработан через [Native Media Engine](https://github.com/haxenme/NME), который предоставляет библиотеки dll, с которыми взаимодействует OpenFL.
 
-The biggest advantage of desktop targets compared to web and mobile is the power of desktop CPU and GPU processors. More complex scenes, physics and number of objects rendered can give a larger creative freedom in the games you create.
+Огромным преимуществом таргетов под desktop по сравнению с web и mobile является хорошая производительность процессоров CPU и GPU. Благодаря этому вы можете создавать более сложные сцены, физику и большое количество объектов в вашей игре.
 
-Rendering in HaxeFlixel is done through the drawTiles API. OpenGL textures are used with the GPU to render Flixel sprites. This native C++ code and use of the GPU outperforms runtimes such as the Flash Player and Adobe AIR in most circumstances substantially.
+Рендер в HaxeFlixel выполнен с помощью API drawTiles. Для отображения спрайтов Flixel используются текстуры OpenGL и GPU. Использование нативного C++ кода и графического процессора существенно превосходят такие среды выполнения как Flash плеер и Adobe AIR в большинстве случаев.
 
-### Conditionals
+### Условные выражения
 
 ```
 #if cpp
-//your desktop code
+//код для desktop
 #end
 
 #if desktop
-//your desktop code
+//код для desktop
 #end
 ```
 
-### Project XML Settings
+### Настройки XML файла проекта
 
-Desktop platforms can use a window width and height of 0, which is a special value that uses the full resolution of the current display.
+Desktop таргеты могут использовать значение ширины и высоты окна равным 0. Это специальное значение, которое означает полный экран на текущем дисплее.
 
 ```xml
 <window width="0" height="0" background="#FFFFFF" fps="60" />
 ```
 
-OpenFL also exposes the following specific settings for the desktop target:
+OpenFL также предоставляет следующие специальные настройки для desktop таргетов:
 
 ```xml
 <window hardware="true" allow-shaders="true" require-shaders="true" if="cpp"/>
@@ -36,13 +36,13 @@ OpenFL also exposes the following specific settings for the desktop target:
 <window orientation="portrait" /> || <window orientation="landscape" if="cpp"/>
 ```
 
-### Compile Commands
+### Команды компиляции
 
-Sublime Text, Flash Develop and IntelliJ IDEA support CPP desktop compilation through their GUI.
+Редакторы Sublime Text, Flash Develop и IntelliJ IDEA поддерживают компилирование под CPP desktop таргет через интерфейс.
 
-#### Command Line
+#### Командная строка
 
-The basic command to compile and test a native desktop target:
+Базовая команда для компилирования и тестирования desktop таргета:
 
 ```
 lime test windows
@@ -50,4 +50,4 @@ lime test mac
 lime test linux -64
 ```
 
-Run this command from the root folder of your project, the default project.xml will be used automatically. Using the test command will automatically launch the application created.
+Запустите одну из этих команд в корневой папке вашего проекта, по умолчанию будет использован файл настроек project.xml. Использование команды test автоматически запустит созданное приложение.
