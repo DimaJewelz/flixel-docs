@@ -4,41 +4,41 @@ title: "iOS"
 
 <img src="/images/targets/ios-logo.png" width="160px" style="float:left; padding:10px" />
 
-The iOS target makes use of a chain of frameworks to compile your native iOS game from Haxe code. OpenFL uses the [Hxcpp](http://lib.haxe.org/p/hxcpp) and XCode natively so no virtual machine is involved.
-When you compile an iOS project an XCode project file is also automatically generated in the build directly so you can make use of the XCode profiler and toolset.
+Таргет iOS использует несколько фреймворков для компиляции в нативный код под iOS из вашего кода на Haxe. OpenFL использует [Hxcpp](http://lib.haxe.org/p/hxcpp) и XCode, поэтому виртуальная машина не используется.
+Когда вы компилируете проект под iOS, то файл с проектом под XCode создается автоматически, поэтому вы можете использовать профайлер и набор инструментов самого XCode.
 
-The Haxe compiler uses it's ```cpp``` target to compile your ```Haxe``` code for the [LibSDL](http://libsdl.org) OpenGL library.
-iOS is is part of the cpp group of targets so when developers mention ```cpp``` the topic will may be relevant to HaxeFlixel iOS.
+Компилятор Haxe использует ```cpp``` таргет, чтобы скомпилировать ваш ```Haxe``` код для библиотеки OpenGL [LibSDL](http://libsdl.org).
+iOS является частью группы таргетов под cpp. Поэтому когда разработчики упоминают ```cpp```, эта тема может иметь отношение к HaxeFlixel iOS.
 
-With [OpenFL](http://openfl.org) using native-code and OpenGL with [LibSDL](http://libsdl.org), the rendering methods are different to where Flixel started with Flash.
-iOS uses GPU accelerated Texture Batching for the best possible performance in mobile devices.
+Благодаря использованию [OpenFL](http://openfl.org) и OpenGL с [LibSDL](http://libsdl.org), способы отображения отличаются от первоначальных с использованием Flash.
+iOS использует т.н. `Texture Batching` в графическом ускорителе для лучшей производительности на мобильных устройствах.
 
-### Conditionals
+### Условные выражения
 ----
 
 ```
 #if cpp
-//your iOS code
+//код для iOS
 #end
 
 #if ios
-//your iOS code
+//код для iOS
 #end
 
 #if mobile
-//your iOS code
+//код для iOS
 #end
 ```
 
-### Project XML settings
+### Настройки XML файла проекта
 
-Mobile platforms can use a window `width` and `height` of 0, which is a special value that uses the full resolution of the current display.
+Mobile таргеты могут использовать значение ширины и высоты окна равным 0. Это специальное значение, которое означает полноэкранное отображение.
 
 ```
 <window width="0" height="0" background="#FFFFFF" fps="60" />
 ```
 
-OpenFL also exposes the following specific settings for the iOS target:
+OpenFL также предоставляет следующие специальные настройки для desktop таргетов:
 
 ```
 <window hardware="true" allow-shaders="true" require-shaders="true" if="cpp"/>
@@ -46,7 +46,7 @@ OpenFL also exposes the following specific settings for the iOS target:
 <window orientation="portrait" /> || <window orientation="landscape" if="cpp"/>
 ```
 
-Custom PNG icons and launch images: (Check [iOS Icon and Image Sizes Guidelines](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/IconMatrix.html) for more info)
+PNG иконки приложения: (для более подробной информации посмотрите статью [рекомендации для создания иконок для iOS](https://developer.apple.com/library/ios/documentation/userexperience/conceptual/mobilehig/IconMatrix.html))
 
 ```
 <set name="PRERENDERED_ICON" value="true" />
@@ -65,21 +65,21 @@ Custom PNG icons and launch images: (Check [iOS Icon and Image Sizes Guidelines]
 <launchImage path="Default-568h@2x.png" width="640" height="1136" if="ios" />
 ```
 
-### Compile Commands
+### Команды компиляции
 
-Sublime Text, FlashDevelop and IntelliJ IDEA support iOS compilation through their GUI.
+Редакторы Sublime Text, Flash Develop и IntelliJ IDEA поддерживают компилирование под iOS через интерфейс.
 
-#### Command line
+#### Командная строка
 
-The basic command to compile and test iOS:
+Базовая команда для компилирования и тестирования под iOS:
 
 ```
 lime test ios
 ```
 
-Run this command from the root folder of your project, the default `Project.xml` will be used automatically.
+Запустите эту команду в корневой папке вашего проекта, по умолчанию будет использован файл настроек project.xml.
 
-If you want to use the iOS simulator, add `-simulator` when running/testing.
+Если вы хотите использовать iOS симулятор, добавьте `-simulator` в команду запуска/тестирования.
 
 ```
 lime test ios -simulator
