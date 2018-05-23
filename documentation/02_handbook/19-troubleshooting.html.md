@@ -1,30 +1,31 @@
 ```
-title: "Troubleshooting"
+title: "Решение проблем"
 ```
-Unexpected behaviour one one may find with sources that are hard to determine.
 
-## Timestep
+Неожиданное поведение может быть обнаружено в местах, которые трудно определить.
 
-By default the library performs calculations with a fixed timestep, to change this set `FlxG.fixedTimestep = false`
+## Таймстеп
 
-#### Explanation of timesteps
+По умолчанию HaxeFlixel выполняет расчеты с фиксированным временным шагом, чтобы поменять это, установите `FlxG.fixedTimestep = false`.
 
-If you are unfamiliar with timesteps, here is a quick explanation.
+#### Понятие таймстепов
 
-A fixed timestep results in `FlxG.elapsed` always returning the same value in each update() iteration. The result is that the game runs "slower" if the computer can't keep up with the update speed. So for example, if the game is supposed to run at 60 FPS and it's running at 30 FPS, the user will perceive it to run at half the expected speed.
+Если вы еще не знакомы с таймстепом, ниже небольшое объяснение.
 
-A variable timestep results in `FlxG.elapsed` returning a value according to the time that passed since the last update() call, and the game running at perceivably the expected speed for the user. However if the framerate is too low and the coder hasn't been careful (or studied Numerical Analysis), it could result in unpredicted behaviour and a game that doesn't run slow but is simply unplayable or broken.
+Фиксированный временной шаг всегда возвращает в `FlxG.elapsed` одинаковое значение в каждом вызове функции update() (для каждого фрейма). В этом случае игра может выполняться более медленно, если вычислительной мощности устройства не хватает для поддержания данной скорости обновления. Например, если игра рассчитана на 60 фпс, а выполняется на 30 фпс, то игрок заметить, что скорость игры уменьшилась в 2 раза.
 
-## Framerate inconsistency in an empty FlxState
+Плавающий таймстеп возвращает в `FlxG.elapsed` значение, которое соответствует времени, которое прошло с момента последнего вызова метода update(), и игра будет работать на заданной скорости для пользователя. Однако, если framerate низкий или разработчик допустил ошибки в коде, это может привести к непредсказуемому поведению, и игра не будет тормозить, а просто будет неиграбельна или сломана. 
 
-A possible cause for this is related to input handling. To fix, you may want to disable any inputs you don't use in your target platforms at compile time.
-The library offers some conditional compilation flags for this:
+## Непостоянство кадров в пустом FlxState
+
+Возможная причина этого связана с обработкой ввода. Чтобы исправить это, вы можете отключить любые вводы, которые вы не используете на целевых платформах во время компиляции.
+HaxeFlixel предлагает несколько условных флагов компиляции для этого:
 * FLX_NO_MOUSE
 * FLX_NO_KEYBOARD
 * FLX_NO_TOUCH
 * FLX_NO_GAMEPAD
 
-These can be passed as parameters preceded by `-D` if compiling via command line (for example `-D FLX_NO_MOUSE`), or passed by adding them to your [Project.XML](documentation/openfl-project-xml-format/) file if you have one. For example, someone who is publishing to multiple platforms could have:
+Они могут передаваться как параметры через `-D` при компиляции в командной строке (например `-D FLX_NO_MOUSE`), либо прописаны в файле [Project.XML](documentation/openfl-project-xml-format/). Например для публикации под несколько платформ можно использовать:
 
 ``` xml
 <haxedef name="FLX_NO_MOUSE" if="mobile" />
@@ -32,8 +33,8 @@ These can be passed as parameters preceded by `-D` if compiling via command line
 <haxedef name="FLX_NO_TOUCH" if="desktop"/>
 <haxedef name="FLX_NO_GAMEPAD" if="web"/>
 ```
-If you created your [Project.XML](documentation/openfl-project-xml-format/) from a template, these options are most likely already in the file but commented out.
+Если вы создаете [Project.XML](documentation/openfl-project-xml-format/) из шаблона, то эти опции должны уже быть там, но закомментированы.
 
-## Undesired stretching when window size varies
+## Нежелательное растяжение при изменении размера окна
 
-Assigning a new instance of any of the classes that inherit from [BaseScaleMode](http://api.haxeflixel.com/flixel/system/scaleModes/BaseScaleMode.html) to `FlxG.scalemode` will set this to the desired scaling. However these settings may override the zoom value set when instancing a `FlxGame`.
+Присвоение нового экземпляра любого из классов, которые наследуются от [BaseScaleMode](http://api.haxeflixel.com/flixel/system/scaleModes/BaseScaleMode.html) к `FlxG.scalemode`, установит желаемое масштабирование. Однако эти настройки могут переопределять значение масштабирования, заданное при создании `FlxGame`.
