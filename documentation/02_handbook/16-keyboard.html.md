@@ -1,68 +1,68 @@
 ```
-title: "Keyboard"
+title: "Использование клавиатуры"
 apiPath: input/keyboard/FlxKeyboard.html
 ```
 
-Keyboard input for HaxeFlixel is provided through the `FlxKeyboard` class and is available through `FlxG.keys`.
+Ввод с клавиатуры в HaxeFlixel предоставляется с помощью класса `FlxKeyboard` и `FlxG.keys`.
 
-## Key Lists
+## Список клавиш
 
-An object of type `FlxKeyList` contains a `Bool` for each key on the keyboard. The values are kept as an array internally, but you can easily refer to them by using special instance variables named after the key. For a full list of all available names look at the `FlxKeyList` documentation [here](http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html).
+Объект `FlxKeyList` содержит значение `Bool` для каждой клавиши на клавиатуре. Значения хранятся как массив, вы можете легко обращаться к ним с помощью специальных переменных экземпляра, указанных после клавиши. Полный список возможных имен клавиш указан в [документации `FlxKeyList`](http://api.haxeflixel.com/flixel/input/keyboard/FlxKeyList.html).
 
-`FlxKeyboard` uses the three key lists `pressed`, `justPressed` and `justReleased` to keep track of the keys. `pressed` contains `true` for all keys that are currently pressed. `justPressed` only contains `true` for all keys that have been pressed since the last frame.
+`FlxKeyboard` использует три списка клавиш: `pressed`, `justPressed` и `justReleased` для отслеживания нажатий. Список `pressed` содержит значения `true` для всех клавиш, которые нажаты в данный момент. Список `justPressed` содержит значения `true` только для тех клавиш, которые были нажаты после истечения последнего кадра. 
 
-Here's an example of how to put it all together:
+Пример использования:
 
 ``` haxe
 override public function update(elapsed:Float):Void
 {
 	if (FlxG.keys.pressed.UP)
 	{
-		// The up arrow key is currently pressed
-		// This code is executed every frame, while the key is pressed
+		// Клавиша ВВЕРХ нажата
+		// Этот код будет выполняться каждый кадр, пока клавиша будет нажатой
 	}
 	
 	if (FlxG.keys.justPressed.LEFT)
 	{
-		// The left arrow key has just been pressed
-		// This code is only executed once, on the frame immediately after the key has been pressed
+		// Клавиша ЛЕВО только что была нажата (в прошлом кадре была не нажата)
+		// Этот код выполнится только в кекущем кадре, сразу после того как кнопка была нажата
 	}
 	
 	if (FlxG.keys.justReleased.LEFT)
 	{
-		// The left arrow key has just been released
-		// This code is only executed once, on the frame immediately after the key has been released
+		// Клавиша ЛЕВО только что была отпущена
+		// Этот код выполнится только в кекущем кадре, сразу после того как кнопка была отпущена
 	}
 
 	super.update(elapsed);
 }
 ```
 
-## Checking multiple keys
+## Проверка нажатия нескольких клавиш
 
-You can check multiple keys at once using the `anyPressed()`, `anyJustPressed()` and `anyJustReleased()` methods of `FlxKeyboard`. This allows you to bind multiple keys to one action easily, for example controlling the player with either WASD or the arrow keys. These methods take an `Array` of key names (as `String`s) and return true if any of the given keys have the desired property.
+Вы можете проверить нажатие сразу нескольких клавиш используя методы `anyPressed()`, `anyJustPressed()` и `anyJustReleased()` из `FlxKeyboard`. Это позволяет вам забиндить несколько клавиш для одного действия. Например управление движением персонажа через WASD либо стрелками. Эти методы принимают массив имен `String` и возвращают true, если хотя бы одна из этих клавиш удовлетворяет требуемому условию. 
 
 ``` haxe
 override public function update(elapsed:Float):Void
 {
 	if (FlxG.keys.anyPressed([LEFT, A]))
 	{
-		// Move left
+		// Движемся влево
 	}
 	
 	if (FlxG.keys.anyPressed([RIGHT, D]))
 	{
-		// Move right
+		// Движемся вправо
 	}
 
 	super.update(elapsed);
 }
 ```
 
-## Conditionals
+### Условные выражения
 
-For general information on conditionals, please refer to [this page](http://haxeflixel.com/documentation/compiler-conditionals/).
+Для общей информации по условным выражениям ознакомтесь с [этой страницей](http://haxeflixel.com/documentation/compiler-conditionals/).
 
 * ### `FLX_NO_KEYBOARD`
 
-	This can be used to remove all keyboard-related logic from HaxeFlixel for optimization purposes, which can make sense on mobile targets, which is why it is combined with `if="mobile"` in the default `Project.xml`.
+	Этот флаг позволяет вам полностью отключить любой код, который завязан на вводе с клавиатуры (например для мобильных платформ). Поэтому в шаблоне добавлена конструкция `if="mobile"` в настройках проекта `Project.xml`.
