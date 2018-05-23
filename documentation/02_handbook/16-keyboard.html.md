@@ -3,7 +3,7 @@ title: "Использование клавиатуры"
 apiPath: input/keyboard/FlxKeyboard.html
 ```
 
-Ввод с клавиатуры в HaxeFlixel предоставляется с помощью класса `FlxKeyboard` и `FlxG.keys`.
+Ввод с клавиатуры в HaxeFlixel предоставляется с помощью класса `FlxKeyboard` и фронтенда `FlxG.keys`.
 
 ## Список клавиш
 

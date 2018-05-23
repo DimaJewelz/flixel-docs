@@ -1,32 +1,32 @@
 ```
-title: "Mouse"
+title: "Использование мыши"
 apiPath: input/mouse/FlxMouse.html
 ```
 
-Mouse input for HaxeFlixel is provided through the `FlxMouse` class and is available through `FlxG.mouse`. It is worth noting that it extends `FlxPoint`.
+Ввод с мыши в HaxeFlixel обеспечивается с помощью классов `FlxMouse` и фронтенда `FlxG.mouse`. Надо отметить, что от расширяет `FlxPoint`.
 
-On non-mobile targets, the mouse starts out by being visible by default. You can set the visibility via `FlxG.mouse.visible`.
+Для немобильных таргетов курсор мыши является видимым по умолчанию. Вы можете управлять видимостью через `FlxG.mouse.visible`.
 
-## Left mouse button
+## Левая кнопка мыши
 
-The most common use of `FlxG.mouse` is checking the state of the left mouse button.
+Наиболее часто фронтенд `FlxG.mouse` используется для проверки состояния левой кнопки мыши.
 
 ``` haxe
 override public function update(elapsed:Float):Void
 {
 	if (FlxG.mouse.pressed)
 	{
-		// The left mouse button is currently pressed
+		// Левая клавиша мыши нажата
 	}
 	
 	if (FlxG.mouse.justPressed)
 	{
-		// The left mouse button has just been pressed
+		// Левая клавиша мыши только что была нажата
 	}
 	
 	if (FlxG.mouse.justReleased)
 	{
-		// The left mouse button has just been released
+		// Левая клавиша мыши только что была отпущена
 	}
 
 	super.update(elapsed);
@@ -34,102 +34,102 @@ override public function update(elapsed:Float):Void
 
 ```
 
-Exactly the same logic can be used for the middle and right mouse buttons. The properties are postfixed by `Middle` / `Right`, e.g. `FlxG.mouse.pressedRight`.
+В точности такая же длогика может быть исползована для средней и правой кнопок мыши. В название свойства будет добавлена часть `Middle` / `Right`, например `FlxG.mouse.pressedRight`.
 
-## Cursor
+## Курсор
 
 ```haxe
 import flixel.util.FlxColor;
 using flixel.util.FlxSpriteUtil;
 
-// Create a white circle to use as a cursor graphic
+// Создается белый круг для использования в качестве курсора
 var sprite = new FlxSprite();
 sprite.makeGraphic(15, 15, FlxColor.TRANSPARENT);
 sprite.drawCircle();
 
-// Load the sprite's graphic to the cursor
+// Загружаем графику спрайта в курсор
 FlxG.mouse.load(sprite.pixels);
 
-// Use the default mouse cursor again
+// Возвращаем курсор по умолчанию
 FlxG.mouse.unload();
 
-// To use the system cursor:
+// Используем системный курсор
 FlxG.mouse.useSystemCursor = true;
 ```
 
-## Positional data
+## Координаты курсора
 
-There are two kinds of position data available:
+Существует два способа получить координаты курсора:
 
-* #### World position (absolute)
+* #### Абсолютное положение
 	
 	```haxe
 	FlxG.mouse.x
 	FlxG.mouse.y
-	FlxG.mouse.getWorldPosition(); // returns x / y as a FlxPoint
+	FlxG.mouse.getWorldPosition(); // вернет x / y как FlxPoint
 	```
 
-* #### Screen position (relative)
+* #### Экранное положение
 	
 	```haxe
 	FlxG.mouse.screenX
 	FlxG.mouse.screenY
-	FlxG.mouse.getScreenPosition(); // returns screenX / screenY as a FlxPoint
+	FlxG.mouse.getScreenPosition(); // вернет screenX / screenY как FlxPoint
 	```
 
-## Mouse wheel
+## Колесо мыши
 
-The current "delta" value of mouse wheel is provided in a simple `Int` property. If the wheel has just been scrolled up, it will have a positive value and vice versa. If it wasn't scrolled during the current frame, it's 0.
+Текущще значение "delta" колеса мыши определяется свойством типа `Int`. Если колесо было прокручено вверх, оно будет иметь положительное значение, если вниз -  то отрицательное. Если прокрутки не было в текущем кадре, то значение будет равным 0.
 
 ```haxe
 if (FlxG.mouse.wheel != 0)
 {
-	// Mouse wheel logic goes here, for example zooming in / out:
+	// Логика для колеса мыши, например зум:
 	FlxG.camera.zoom += (FlxG.mouse.wheel / 10);
 }
 ```
 
-## Flash native cursor API
+## Нативный Flash API курсора
 
-AS3-Flixel used a simple `Sprite` to display a bitmap graphic that is synchronized with the mouse position every frame. This approach is not optimal, as it causes what is commonly referred to as "mouse lag" - the cursor sprite lags behind the actual mouse position. Depending on the game's framerate and the player's mouse speed, this can be very noticeable and thus have a negative impact on the overall experience.
+AS3-Flixel использует простой `Sprite` для отображения растровой графики, которая синхронизируется с положением мыши в каждом фрейме. Этот подход не является оптимальным, т.к. часто приводит к лагам маши - графика курсора отстает от реального положения мыши. В зависимости от фпс игры и скорости мыши, это может быть очень заметным и, таким образом, негативно отразиться на общем впечатлении от игры.
 
-HaxeFlixel leverages the [flash native cursor API](http://www.adobe.com/devnet/flashplayer/articles/native-mouse-cursors.html) for better mouse cursor performance. However, there are certain restrictions to native cursors:
+HaxeFlixel улучшил [нативный Flash API курсора](http://www.adobe.com/devnet/flashplayer/articles/native-mouse-cursors.html) для лучшей производительности. Однако есть некоторые ограничения для нативных курсоров:
 
- * They can not exceed 32x32 pixels
- * No negative cursors are allowed, and the positive offsets are limited to the size
- * The targeted flash player version must be 10.2 or higher
+ * Они не могут превышать размер 32х32 пикселя
+ * Отрицательные смещения курсора запрещены, а положительные ограничены максимальным размером курсора
+ * Целевая версия flash плера должна быть 10.2 или выше
 
-Because of this, using the native cursor API is completely optional, see the section on the `FLX_NO_NATIVE_CURSOR` conditional.
+Поэтому использование API нативного курсора полностью опционально, см. раздел условных выражений `FLX_NO_NATIVE_CURSOR`.
 
-### Custom native cursors
+### Кастомный нативный курсор
 
-You can use `FlxG.mouse.load()` for native cursors as usual, but if you want more fine-grained control, you can use the following functions:
+Вы можете использовать `FlxG.mouse.load()` для нативных курсоров как обычно, но если вы хотите иметь больший контроль, вы можете использовать следующие функции
 
 ```haxe
 FlxG.mouse.setSimpleNativeCursorData("custom", BitmapData);
 FlxG.mouse.registerNativeCursor("custom", MouseCursorData);
 ```
 
-You can find more information on the `MouseCursorData` object [here](http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/ui/MouseCursorData.html).
+Больше информации по объекту `MouseCursorData` вы можете найти [здесь](http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/flash/ui/MouseCursorData.html).
 
 
-Use `FlxG.mouse.setNativeCursor()` to switch to an already registered native cursor.
+Используйте `FlxG.mouse.setNativeCursor()` для переключения заранее зарегистрированного нативного курсора. 
 
-## Conditionals
+### Условные выражения
 
-For general information on conditionals, please refer to [this page](http://haxeflixel.com/documentation/compiler-conditionals/).
+Для общей информации по условным выражениям ознакомьтесь с [этой страницей](http://haxeflixel.com/documentation/compiler-conditionals/).
 
 * ### `FLX_NO_MOUSE_ADVANCED`
 	
-	By default, there are event listeners set up for both the middle and the right mouse button. There are two reasons for wanting to disable this:
-
-	* it requires a minimum flash player version of 11.2
-	* it removes the right-click menu of the flash-player
-
+	По-умолчанию слушатели событий заданы для средней и правой кнопки мыши. Есть две причины для их отключения:
+	
+	* этот функционал требует версию flash плеера 11.2 или выше
+	* этот функционал убирает контекстное меню flash плеера
+	
 * ### `FLX_NO_NATIVE_CURSOR`
 
-	This disables the native cursor API on the flash target. For more info, check the "Flash native cursor API"-section above.
-
+	Отключает API нативного курсора во flash плеере. Более подробно описано выше в разделе "Нативный Flash API курсора".
+	
 * ### `FLX_NO_MOUSE`
 
-	This can be used to remove all mouse-cursor-related logic from HaxeFlixel for optimization purposes, which can make sense on mobile targets, which is why it makes sense to combine this with `if="mobile"` in your `Project.xml`.
+	Этот флаг позволяет вам полностью отключить любой код, который завязан на вводе с мыши (например для мобильных платформ). Поэтому в шаблоне добавлена конструкция `if="mobile"` в настройках проекта `Project.xml`.
