@@ -1,11 +1,11 @@
 ```
-title: "Gamepads"
+title: "Управление с помощью геймпада"
 apiPath: input/gamepad/index.html
 ```
 
-Gamepad input for HaxeFlixel is provided through the `FlxGamepad` class and is available through `FlxG.gamepads` and the `InputFrontEnd`.
+Ввод с помощью геймпада в HaxeFlixel обеспечивается с помощью классов `FlxGamepad`, `InputFrontEnd` и фронтенда `FlxG.gamepads`. 
 
-Since gamepads have a variety of manufacturers their keycodes provided to HaxeFlixel API differ from model to model. HaxeFlixel provides mappings that map buttons and sticks to common IDs for convenient use. Mappings are available for:
+Т.к. геймпады имеют большое кол-во производителей, их коды клавиш в HaxeFlixel API могут отличаться в зависимости от модели. HaxeFlixel предоставляет сопоставления, которые связывают кнопки и стики с общими идентификаторами для удобного использования. Сопоставления доступны для:
 
 - XInput (Xbox 360, Xbox One, etc)
 - PS4
@@ -16,9 +16,9 @@ Since gamepads have a variety of manufacturers their keycodes provided to HaxeFl
 - MFi
 - PS Vita
 
-For most gamepads HaxeFlixel will automatically detect the model and abstract the API inputs under a common "universal" gamepad model based on the Xbox 360 layout. The underlying device-specific "raw" inputs are still available for you to poll directly, if you choose.
+Для большинства геймпадов HaxeFlixel автоматически определяет модель и подгоняет API ввода под общую "универсальную" модель геймпада, основанную на макете Xbox 360. Остальные кнопки, зависящие от конкретной модели геймпада, также остаются доступны для вызова напрямую.
 
-Here's some example logic for basic detection using the "universal" gamepad API:
+Ниже пример логики с использованием API универсального геймпада:
 
 ``` haxe
 import flixel.FlxG;
@@ -31,7 +31,7 @@ class PlayState extends FlxState
     {
         super.update(elapsed);
 
-        // Important: can be null if there's no active gamepad yet!
+        // Важно: может быть null, если геймпад не подключен
         var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
         if (gamepad != null)
         {
@@ -43,41 +43,41 @@ class PlayState extends FlxState
     {
         if (gamepad.pressed.A)
         {
-            trace("The bottom face button of the controller is pressed.");
+            trace("Нажата нижняя кнопка контроллера.");
         }
 		
         if (gamepad.analog.justMoved.LEFT_STICK_X)
         {
-            trace("The x axis of the left analog stick of the controller has been moved.");
+			trace("Левый стик контроллера был подвинут по оси x.");
         }
     }
 }
 ```
 
-In this case, ```gamepad.pressed.A``` checks whether the bottom face button is pressed. On a PS4 controller this would be the "X" button, on an XBox 360 or XBox One controller this would be the "A" button.
+В данном случае ```gamepad.pressed.A``` проверяет, нажата ли нижняя кнопка. На контроллере PS4  это будет кнопка "X", на контроллере XBox 360 или XBox One это будет кнопка "А".
 
-Also, the ```gamepad.pressed.A``` syntax is shorthand for ```gamepad.pressed.check(FlxGamepadInputID.A)```. You want to use the latter syntax if you need to check a variable (which would be the case if the user can customize their inputs).
+Также синтаксис ```gamepad.pressed.A``` - это сокращение от ```gamepad.pressed.check(FlxGamepadInputID.A)```. Последний синтаксис удобно использовать в случае если вам нужно проверить переменную (в случае когда пользователь меняет управление).
 
-If you wanted to check a device-specific input, you would use the ```checkRaw``` function, like this: ```gamepad.pressed.checkRaw(PS4ID.X)```
+Если вы хотите проверить ввод с определенного устройства, используйте функцию ```checkRaw```, например так: ```gamepad.pressed.checkRaw(PS4ID.X)```.
 
-Device-specific inputs can be found in the ```flixel.input.gamepad.id``` package.
+Вводы, характерные для конкретного устройства могут быть найдены в пакете ```flixel.input.gamepad.id```.
 
-If you want to support a controller that HaxeFlixel doesn't provide the IDs for, the following methods of `FlxGamePad` methods should be helpful for working out what those IDs are:
+Если вы хотите поддерживать контроллер, для которого HaxeFlixel не предоставляет ID, следующие методы класса `FlxGamePad` будут полезны:
 
-Return the ```FlxGamepadInputID``` value under the "universal" gamepad model:
+Возвращает значение ```FlxGamepadInputID``` для универсальной модели геймпада:
 - `firstPressedButtonID()`
 - `firstJustPressedButtonID()`
 - `firstJustReleasedButtonID()`
 
-Return the device-specific input ID value:
+Возвращает ID ввода, характерного для конкретного устройства:
 - `firstPressedButtonRawID()`
 - `firstJustPressedButtonRawID()`
 - `firstJustReleasedButtonRawID()`
 
-### Conditional to remove gamepads
+### Условные выражения
 
 ``` haxe
 FLX_NO_GAMEPAD
 ```
 
-HaxeFlixel includes a [conditional](http://haxeflixel.com/documentation/haxeflixel-conditionals/) to omit using gamepads for optimization purposes if you are developing for a platform such as mobile, or your game just isn't designed for them.
+HaxeFlixel включает в себя [условное выражение](http://haxeflixel.com/documentation/haxeflixel-conditionals/) для отключения использования геймпадов с целью оптимизации. Полезно в случае если вы разрабатываете под мобильную платформу, либо если ваша игра не рассчитана для использования геймпадов.
