@@ -1,14 +1,15 @@
 ```
-title: "Tips and Tricks"
+title: "Советы и приемы"
 ```
-This is a collection of various tips and tricks for developing with HaxeFlixel.
+Это сборник различных советов и приемов для разработки на HaxeFlixel.
 
 ## Overriding SWF Script Timeout
+## Задание времени выполнения скрипта SWF
 
-By default, Flash will create a dialog box and cancel any running scripts after 15 seconds spent in a single loop. Generally, this is good as it helps to prevent a Flash file from being stuck in an infinite loop, but there are times where you may wish to override this preset. Haxe offers a [compilation flag](http://haxe.org/manual/tips_and_tricks) that can do just this, and OpenFL can pass this to the compiler by adding the following line to your Project.xml file:
+По умолчанию, Flash показывает диалоговое окно и отменяет выполнение любого скрипта, время выполнения которога превышает 15 секунд. Обычно это полезно, т.к. это предостерегает приложение Flash от зацикливания. Но есть случаи, когда вы хотите изменить это время. В Haxe есть специалоьный [флаг компиляции](http://haxe.org/manual/tips_and_tricks) который делает это, и чтобы OpenFL передал это значение компилятору, добавьте следующую строку в файл настройки проекта Project.xml:
 
 ``` xml
 <haxeflag name="-D" value="swf-script-timeout=60" />
 ```
 
-Where '60' can be any value from 15 to 60, and is the number of seconds that elapse before the dialog appears. 60 is the hard-coded limit and is the maximum value that can be used for this flag. If you use a value higher than 60, the limit will be set to 60. Please note that regardless of the limit you set, the dialog warning will still read `A script has executed for longer than the default timeout period of 15 seconds.`
+Где '60' может быть любым значением от 15 до 60, и означает количество секунд, до того как появился диалоговое окно о том, что программа не отвечает. 60 - это максимально доступное значение, даже если вы выставите большее число, лимит будет выставлен в 60. Обратите внимание, что несмотря на выставленный вами лимит, предупреждение о том, что `Выполнение сценария превысило 15 секунд` все равно будет видно.
