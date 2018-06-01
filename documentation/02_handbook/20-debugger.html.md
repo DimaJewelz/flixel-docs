@@ -1,62 +1,62 @@
 ```
-title: "Debugger"
+title: "Отладчик"
 ```
 
-Flixel comes with a fairly powerful debugging overlay. You can open it with one of the default toggle keys (`F2`, \` and \ with a QWERTY keyboard layout). Note that these are configurable via `FlxG.debugger.toggleKeys`. Alternatively, you can do the same in code via the `FlxG.debugger.visible` flag.
+В Flixel есть довольно мощный отладчик. Открыть его можно, нажав любую из кнопок по умолчанию (`F2`, \` и \). Эти клавиши задаются через `FlxG.debugger.toggleKeys`. Также можно открыть его, поменяв значение у флага `FlxG.debugger.visible`;
 
-Note that the debugger does not exist when compiling with `FLX_NO_DEBUG`. With the default `Project.xml`, this is the case in release mode.
+Обратите внимание, что дебаггер отлючается при выставленном флаге компилятора `FLX_NO_DEBUG`. В конфигурационном файле проекта по умолчанию этот флаг включается в релизном билде.
 
 ![](../images/02_handbook/debugger/debugger-overlay.png)
 
-## Debug draw
+## Отрисовка в отладчике
 
-`FlxG.debugger.drawDebug` can be enabled to display the hitboxes of every `FlxObject` added to the state (alternatively, press the cube button in the upper right corner of the debugger).
+Можно включить `FlxG.debugger.drawDebug`, чтобы отображать хитбоксы всех `FlxObject`, добавленных в текущую сцену (либо нажать квадратную кнопку в верхнем правом углу отладчика).
 
 ![](../images/02_handbook/debugger/draw-debug.png)
 
-The hitboxes are color-coded based on the collision properties. For `FlxObject` and `FlxSprite` this means:
+Хитбоксы имеют разную расцветку в зависимости от характера столкновений. Для `FlxObject` и `FlxSprite`:
 
-- Blue for `allowCollisions == FlxObject.NONE`
-- Green for `immovable` objects
-- Red otherwise
+- Синий цвет для ситуации `allowCollisions == FlxObject.NONE`
+- Зеленый - для неподвижных (`immovable`) объектов
+- В противном случае - красный
 
-The color is customizable via the `debugBoundingBoxColor` property.
+Цвет можно задать через свойство `debugBoundingBoxColor`.
 
-The behavior of tiles in `FlxTilemap` is slightly different:
+Цвета для тайлов в `FlxTilemap` означают немного другое:
 
-- Blue for `allowCollisions == FlxObject.NONE`
-- Green for `allowCollisions == FlxObject.ANY`
-- Pink for other values of `allowCollisions`
+- Синий цвет для ситуации `allowCollisions == FlxObject.NONE`
+- Зеленый - для `allowCollisions == FlxObject.ANY`
+- Розовый - для других значений свойства `allowCollisions`
 
-## The Log Window
+## Окно логов
 
-The log window is used to display traces and can be accessed via `FlxG.log`. You can also redirect any `trace()`-calls to it with `FlxG.log.redirectTraces = true;`. Using it is mostly a matter of preference, some people prefer to have their traces displayed in their IDE of choice (FlashDevelop's output panel for example).
+Окно логов используется для отображения сообщений и может быть доступно через `FlxG.log`. Также туда можно перенаправлять сообщения из вызова `trace()`, установив `FlxG.log.redirectTraces = true;`. Используйте этот метод по вашему усмотрению, т.к. многие предпочитают, чтобы сообщения выводились в среде разработки (например окне вывода во FlashDevelop).
 
-Some flixel-internal errors will also be output to the log window.
+Некоторые внутренние ошибки Flixel также выводятся в окно логов.
 
-### Log styles
+### Стили логов
 
-It's possible to customize things like text color, size, style or add a prefix by using log styles. `FlxG.log.warn()`, `error()` and `notice()` use pre-defined log styles.
+У отображения окна логов есть возможность кастомизации, можно например поменять цвет текста, размер, стиль, либо добавить префикс, используя стили логов. `FlxG.log.warn()`, `error()` и `notice()` - преопределенные стили логов.
 
-Here's an example of how you could differentiate each trace by the player from others by adding a `[Player]` prefix and printing it in green:
+Ниже пример, как можно отличить сообщения игрока от других сообщений. Для этого добавляет префикс `[Player]` и меняется цвет на зеленый:
 
 ```haxe
 var playerAction = new LogStyle("[Player]", "00FF40");
 FlxG.log.advanced(" Shoot", playerAction);
 ```
 
-## The Watch Window
+## Окно наблюдения
 
-It's very common to use `trace()`-calls to output the value of certain variables for debugging. However, this approach doesn't scale very well - at 60 fps, tracing the values of multiple variables results in a flood of messages. Breakpoints-debugging is great to inspect a game's internal state, but doesn't help when interrupting the execution is not an option, for example when debugging input logic.
+Часто метод `trace()` используют чтобы выводить значение определенных переменных для отладки. Однако этот метод не совсем удобен, т.к. при 60 кадрах в секунду, вывод значения нескольких переменных влечет за собой трудночитаемый спам из сообщений. Отладка по брейкпоинтам - отличный способ отследить состояние игры, но не всегда подходит - например для отладки логики ввода, т.к. процесс выполения кода останавливается.
 
-This is where the watch window comes into play. It displays the values of variables using reflection. For example, to keep track of the player's position:
+В этом случае поможет окно наблюдения. Оно отображает значения требуемых переменных. Например, если вы хотите отслеживать положение игрока:
 
 ```haxe
 FlxG.watch.add(_player, "x");
 FlxG.watch.add(_player, "y");
 ```
 
-The display string does not have to be the same as the variable's name, "numEnemies" is much more descriptive than "length" in this example:
+Отображаемое имя может быть изменено. Например, имя "numEnemies" намного понятнее, чем "length":
 
 ```haxe
 FlxG.watch.add(_enemies, "length", "numEnemies");
@@ -64,19 +64,19 @@ FlxG.watch.add(_enemies, "length", "numEnemies");
 
 ![](../images/02_handbook/debugger/watch-window.png)
 
-For static variables, you pass the class instead of an object:
+Для статичных переменных, вы можете передавать класс, вместо объекта:
 
 ```haxe
 FlxG.watch.add(FlxG, "height");
 ```
 
-It's also possible to edit the displayed values by clicking on them, entering a new value in the text field and pressing enter to confirm. This even works with `FlxPoint` objects.
+Если кликнуть на переменную, можно поменять ее значение, введя новое значение и нажав Enter для подтверждения. Работает также с объектами `FlxPoint`.
 
-To remove a watch entry again, simply call `FlxG.watch.remove(object, variableName)`.
+Чтобы убрать переменную из окна, вызовите `FlxG.watch.remove(object, variableName)`.
 
-### Quick watches
+### Быстрое наблюдение
 
-Quick watches are a lightweight alternative to a regular watch entry. They don't require a variable, they simply store a value for a `String` name. The following example stores the result of `FlxG.keys.anyPressed(["UP", "W"])` under the name `"Up key pressed"` - this is updated every frame since it happens in `update()`.
+Быстрое наблюдение - это более быстрый вариант обычного наблюдения. Оно не требует наличия переменной, а просто сохраняет значение для имени `String`. Пример ниже хранит результат выполнения функции `FlxG.keys.anyPressed(["UP", "W"])` под именем `"Up key pressed"` и обновляется каждый кадр, в котором выполнилось это условие.
 
 ```haxe
 override public function update():Void
@@ -86,53 +86,54 @@ override public function update():Void
 }
 ```
 
-To remove a quick watch entry, call `FlxG.watch.removeQuick(name)`.
-Quick watch values can not be modified.
+Чтобы удалить запись из выстрого наблюдения, вызовите `FlxG.watch.removeQuick(name)`.
 
-### Mouse watch
+Значения из быстрого наблюдения не могут быть изменены вручную.
 
-`FlxG.watch.addMouse()` is a convenient helper to display the current mouse position in the watch window. This can be useful to find the right coordinates to position UI elements at. You can also use the console command `watchMouse` to call this function.
+### Наблюдение за мышью
 
-## The Stats Window
+Метод `FlxG.watch.addMouse()` является удобным помощником для отображения текущей позиции мыши в окне наблюдения. Это можно использовать для поиска координат при позиционировании элементов интерфейса. Также для вызова этой функции можно использовать консольную команду `watchMouse`.
 
-The stats window displays some basic profiling info:
+## Окно статистики
 
-1. FPS value
-2. Memory usage in MB
-3. The amount of `update()` calls this frame (and the time it took in ms)
-4. The amount of `draw()` calls this frame (and the time it took in ms)
-5. The size of the `FlxQuadtree` pool for collision detection
-6. The size of the `FlxList` (used for quad trees) pool
+Окно статистики отображает некоторую основную информацию:
 
-3 and 4 are especially useful when it comes to performance optimization ("Do I need to optimize my rendering or my update-logic?"). Of course this is only very basic data, profiling tools like [Adobe Scout](https://creative.adobe.com/products/scout) or [hxScout](http://hxscout.com) provide much more detailed information.
+1. Текущий FPS
+2. Использование памяти (в Мб)
+3. Количество вызовов метода `update()` в текущем фрейме (и время на выполнение этой фукцнии в мс)
+4. Количество вызовов метода `draw()` в текущем фрейме (и время на выполнение этой фукцнии в мс)
+5. Размер объекта `FlxQuadtree` для определения столкновений
+6. Размер объекта `FlxList` (используется для дерева квадрантов (quadtree))
+
+Пункты 3 и 4 особенно полезны когда необходима оптимизация производительности (чтобы понять нужно ли оптимизировать рендер или логику). Конечно это очень базовая информация. Утилиты для профилирования, такие как [Adobe Scout](https://creative.adobe.com/products/scout) или [hxScout](http://hxscout.com) предоставляют намного больше информации.
 
 ![](../images/02_handbook/debugger/stats-window.png)
 
-## The Bitmap Log Window
+## Окно логов Bitmap
 
-The Bitmap Log can be used to display `BitmapData` objects via `FlxG.bitmapLog.add(bitmapData)`. This can be useful to debug logic that manipulates some `BitmapData`. The window provides a slideshow to scroll through logged bitmaps. You can use the middle mouse button to move the graphic around and the mouse wheel to zoom in and out.
+Окно логов Bitmap может быть использовано чтобы отображать объекты `BitmapData` с помощью вызова метода `FlxG.bitmapLog.add(bitmapData)`. Может быть полезно для отладки логики с использованием `BitmapData`. Окно предоставляет слайдер для прокрутки логируемых изображений. Вы можете использовать среднюю кнопку мыши, чтобы перемещать картинки и колесико мыши для увеличения и уменьшения масштаба.
 
-You can also inspect flixel's internal `BitmapData` cache by calling `FlxG.bitmapLog.viewCache()` or entering the console command `viewCache`.
+Также вы можете следить за внутренним кешем `BitmapData`, вызвав метод `FlxG.bitmapLog.viewCache()` или введя команду `viewCache` в консоли.
 
 ![](../images/02_handbook/debugger/view-cache.png)
 
-## The Console Window
+## Консоль
 
-The console allows a limited subset of Haxe code to be parsed and executed at runtime via [hscript](https://github.com/HaxeFoundation/hscript). Commands like `state._player.x = 50` or `state._player.jump()` as you'd expect. Especially on targets with long compile times, this can speed up development substantially.
+Консоль позволяет анализировать и выполнять ограниченное количество команд Haxe во время выполнения, с помощью [hscript](https://github.com/HaxeFoundation/hscript). Команды типа `state._player.x = 50` или `state._player.jump()` будут работать корректно. На таргетах с длительным временем компиляции, эти команды могут существенно сократить время разработки.
 
-It also supports auto completion for class fields and registered functions / objects / classes, similar to the completion popups in IDEs (albeit without documentation, which is not available at runtime).
+Также в консоли есть поддержка автокомплита для полей классов и зарегистрированных функции / объектов / классов, аналогично всплывающим окнам в среде разработки (хотя и без документации, которая недоступна во время выполнения).
 
 ![](../images/02_handbook/debugger/console-completion.png)
 
-`state` is the starting point for hscript and needs to be registered to the console to be available - Flixel already does this for you. The same goes for a few classes like `FlxG` or `Math`. To register further objects or classes, call `FlxG.console.registerObject()`.
+`state` это стартовая точка для `hscript` и должен быть зарегистрирован в консоли, чтобы быть доступным. Flixel делает это самостоятельно. Аналогично это выполняется для других классов, например `FlxG` или `Math`. Чтобы зарегистрировать дополнительные объекты или классы, вызовите `FlxG.console.registerObject()`.
 
-By default, the game is paused when the console text field receives focus. After a command is executed, the game progresses one frame so the effects can be seen.
+По умолчанию игра ставится на паузу, когда текстовое поле консоли получает фокус. После выполнения команды, игра делает один кадр, чтобы можно было заметить эффект.
 
-The console stores executed commands (use the up and down keys to cycle through them). This history is persistent across executions of your game (but not across different target platforms).
+Консоль хранит выполненные команды (используйте стрелки вверх и вниз на клавиатуре, чтобы переключаться между ними). Эта история сохраняется в течении всех компиляций вашей игры (но не для разных целевых платформ).
 
-### Adding custom commands
+### Добавление собственных команд
 
-Functions can also be registered to the console directly as commands via `FlxG.console.registerFunction()`. Here's an example with a function called `"spawnEnemy"`, spawning a new enemy at the current mouse position in the Mode demo.
+Функции также можно зарегистрировать в консоли, также как и команды через метод `FlxG.console.registerFunction()`. Ниже пример с функцией  `"spawnEnemy"`, которая создает нового противника в текущей позиции курсора мыши.
 
 ```haxe
 // in PlayState#create()
@@ -143,72 +144,72 @@ FlxG.console.addCommand("spawnEnemy", function() {
 });
 ```
 
-## Tracker Windows
+## Трекеры
 
-Tracker windows are a convenient way to inspect the most important properties of a class / object. Each tracker window is basically a watch window instance. It's the only window type that can be closed.
+Трекеры - это удобный способ проверки наиболее важных свойств класса / объекта. Каждый трекер по сути является экземпляром окна наблюдения. Это единственное окно, которое можно закрыть.
 
-A _tracker profile_ defines the properties that should be watched for a specific class. Let's take a look at the pre-defined tracker profile for `FlxSprite`:
+_Профиль трекера_ определяет свойства, которые необходимо отслеживать для определенного класса. Ниже пример предопределенного профиля для трекера `FlxSprite`:
 
 ```haxe
 new TrackerProfile(FlxSprite, ["frameWidth", "frameHeight", "alpha", "origin", "offset", "scale"], [FlxObject])
 ```
 
-The first argument determines the class the profile belongs to, the second is an `Array<String>` containing the property names. The third argument is a list of extensions - in this case just `FlxObject`. This means that the properties defined in the tracker profile of `FlxObject` will be added to tracker windows for `FlxSprite` as well. This works recursively - `FlxObject` "extends" the `FlxBasic` tracker profile, so any properties of that profile will be added as well. This is why `FlxG.debugger.track(_player)` in Mode's `PlayState#create()` creates a window with a longer list of properties than you'd initially expect from the `FlxSprite` profile:
+Первый параметр определяет класс, к которому профиль принадлежит. Второй - массив строк `Array<String>`, содержащий имена отображаемых свойств. Третий аргумент - список расширений - в данном случае просто `FlxObject`. Это означает, что свойства, определенные в профиле трекера `FlxObject`, будут добавлены в окна трекера для` FlxSprite`. Это работает рекурсивно - `FlxObject` "расширяет" профиль трекера `FlxBasic`, поэтому любые свойства этого профиля также будут добавлены к выводу. Вот почему `FlxG.debugger.track(_player)` в методе демо проекта `PlayState#create()` создает окно с более длинным списком свойств, чем вы ожидали от профиля` FlxSprite`:
 
 ![](../images/02_handbook/debugger/track-player.png)
 
-Alternatively, you can use the console to create tracker windows at runtime:
+Также можно использовать консоль, чтобы создавать трекеры во время выполнения программы:
 
 `track(FlxG.state._player)`
 
-The real power of tracker windows comes with the ability to define custom profiles, for example for the `Player` class in Mode:
+Основным преимуществом трекеров является возможность определять собственные профили, например как для класса `Player`:
 
 ```haxe
 FlxG.debugger.addTrackerProfile(new TrackerProfile(Player, ["isReadyToJump", "_shootCounter", "_jumpPower"], [FlxBasic]));
 ```
 
-(Note: calling `addTrackerProfile()` causes a crash on the latest haxelib release due to a bug. As a workaround, you can call `FlxG.debugger.track(null);` beforehand).
+(Вызов `addTrackerProfile()` приводит к сбою в последней версии haxelib из-за ошибки. В качестве обходного пути вы можете до этого вызвать `FlxG.debugger.track(null);`).
 
 ![](../images/02_handbook/debugger/track-player-custom.png)
 
-## The VCR
+## VCR
 
-Flixel's VCR feature (recording and replaying via `FlxG.vcr`) is mostly disabled by default and can be activated with the `FLX_RECORD` define. Even so, a few features are still available by default via the middle three buttons of the debugger:
+VCR - функционал записи и воспроизведения (`FlxG.vcr`). Чаще всего отключен по умолчанию и может быть активирован с заданием флага `FLX_RECORD`. Тем не менее, некоторые функции по-прежнему доступны по умолчанию через средние три кнопки отладчика:
 
 ![](../images/02_handbook/debugger/vcr-disabled.png)
 
-The left button resets the current state via `FlxG.resetState()`.
+Левая кнопка перезапускает текущую сцену (state) путем вызова `FlxG.resetState()`.
 
-The middle button pauses / unpauses the game.
+Средняя кнопка ставит игру на паузу (и снимает с паузы).
 
-The right button pauses the game if it isn't already paused and skips ahead exactly one frame (one `update()` and one `draw()` call). This can be very useful for debugging certain issues.
+Правая кнопка ставит игру на паузу (если она уже не на паузе) и выполняет ровно один кадр (один вызов `update()` и один вызов `draw()`). Это может быть очень полезно для отладки определенных проблем.
 
-If `FLX_RECORD` is defined, two more buttons are available:
+Если задан флаг `FLX_RECORD`, доступны еще 2 кнопки:
 
 ![](../images/02_handbook/debugger/vcr-enabled.png)
 
-The circle starts a new recording - it also resets the current state, since the VCR does not support recordings that start mid-state. If a recording has already been started, the button stops it and opens a file dialog to save it.
+Круглая кнопка начинает новую запись (также она перезапускает сцену, т.к. VCR не поддерживает запись с середины состояния). Если запись уже запущена, кнопка останавливает ее и открывает диалоговое окно, чтобы сохранить запись в файл.
 
-The button with the folder icon right allows loading record files and replaying them.
+Кнопка со значком папки справа позволяет загружать файлы записей и воспроизводить их.
 
-## Adding Debugger Buttons
+## Добавление кнопок в отладчик
 
-You can add custom buttons to the debugger header using `FlxG.debugger.addButton()`. This is what `FlxNapeState` from flixel-addons does if you use it - it adds a convenient "N" button to toggle Nape's debug draw.
+Вы можете добавить собственные кнопки в верхнюю часть отладчика, используя `FlxG.debugger.addButton()`. Именно это и делает `FlxNapeState` из flixel-addons - добавляет удобную кнопку «N» для переключения отладки Nape.
 
 ![](../images/02_handbook/debugger/nape-button.png)
 
-Debugger buttons are persistent across states - `FlxG.debugger.removeButton()` has to be called manually to remove state-specific buttons.
+При смене сцены (state), кнопки отладчика не меняются. Используйте `FlxG.debugger.removeButton()` для удаления кнопок, заданных пользователем.
 
-## Debugger Layouts
+## Макеты отладчика
 
-A debugger layout determines the initial position and size of each debugger window. The available layouts are described in the [FlxDebuggerLayout](http://api.haxeflixel.com/flixel/system/debug/FlxDebuggerLayout.html) enum. You can change the current layout by calling `FlxG.debugger.setLayout()`.
+Макеты отладчика определяет позицию и размер каждого окна отладчика. Доступные макеты описаны в [FlxDebuggerLayout](http://api.haxeflixel.com/flixel/system/debug/FlxDebuggerLayout.html). Вы можете менять текущий макет вызовом функции `FlxG.debugger.setLayout()`.
 
-Here's an example of `FlxDebuggerLayout.RIGHT`:
+Пример макета `FlxDebuggerLayout.RIGHT`:
 
 ![](../images/02_handbook/debugger/layout-right.png)
 
-## The Interaction Tool
+## Инструмент "Взаимодействие"
 
-The Interaction Tool, enabled by the ![](../images/02_handbook/debugger/icons/interactive.png) icon in the debugger overlay, allows you to change game elements, e.g. move sprites, while the game is still running. [Click here](./debugger-interaction) to learn more about the interaction tool.
-
+Инструмент "Взаимодействие" позволяет изменять элементы игры, например перемещать спрайты во время выполнения программы. Доступен при клике на иконку ![](../images/02_handbook/debugger/icons/interactive.png). [По ссылке](./debugger-interaction) доступно более подробное описание этого инструмента.
+ 
 ![](../images/02_handbook/debugger/interaction-mover-shortcut.gif)
