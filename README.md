@@ -1,46 +1,46 @@
 ![](https://raw.github.com/HaxeFlixel/haxeflixel.com/master/src/files/images/flixel-logos/flixel-docs.png)
 
-[flixel](https://github.com/HaxeFlixel/flixel) | [addons](https://github.com/HaxeFlixel/flixel-addons) | [ui](https://github.com/HaxeFlixel/flixel-ui) | [demos](https://github.com/HaxeFlixel/flixel-demos) | [tools](https://github.com/HaxeFlixel/flixel-tools) | [templates](https://github.com/HaxeFlixel/flixel-templates) | [docs](https://github.com/HaxeFlixel/flixel-docs) | [haxeflixel.com](https://github.com/HaxeFlixel/haxeflixel.com)
+[flixel](https://github.com/HaxeFlixel/flixel) | [дополнения](https://github.com/HaxeFlixel/flixel-addons) | [ui](https://github.com/HaxeFlixel/flixel-ui) | [демо](https://github.com/HaxeFlixel/flixel-demos) | [инструменты](https://github.com/HaxeFlixel/flixel-tools) | [шаблоны](https://github.com/HaxeFlixel/flixel-templates) | [документация](https://github.com/HaxeFlixel/flixel-docs) | [haxeflixel.com](https://github.com/HaxeFlixel/haxeflixel.com)
 
-## About
+## О HaxeFlixel
 
-This is the main location for HaxeFlixel documentation. Pull requests from this location will be pushed to the live website periodically, so please help us improve the HaxeFlixel docs.
+Это основное место для документации HaxeFlixel. Pull реквесты будут периодически выкладываться на сайт, поэтому, пожалуйста, помогите нам улучшить документацию HaxeFlixel.
 
-## Contents
+## Содержание
 
-* The "main" documentation available on [haxeflixel.com/documentation](http://www.haxeflixel.com/documentation).
-* The API documentation.
+* Основная документация доступна в разделе [haxeflixel.com/documentation](http://www.haxeflixel.com/documentation).
+* Документация по API.
 
-### Main documentation
+### Основная документация
 
-The main documentation is made up of `*.html.md` files in the `./documentation` folder. Each file and folder starts with a numerical prefix specifying the order listed on the [docpad website](https://github.com/HaxeFlixel/haxeflixel.com).
+Основная документация состоит из файлов `*.html.md` в папке `./documentation`. Каждая директория и файлы начинаются с префикса в виде номера, определяющего порядок на [странице] (https://github.com/HaxeFlixel/haxeflixel.com).
 
-Additional pages can be added using the same extension and using a header specifying the title as seen in the other pages. Eg:
+Дополнительные страницы могут быть добавлены, используя то же расширение и используя особый формат заголовков, например:
 
 	```
-	title: "Documentation Page"
+	title: "Страница документации"
 	```
 	
-	Use Regular GitHub flavoured markdown for the page.
-	Note `title:` above is case sensitive.
+	Используйте обычную разметку GitHub для этой страницы.
+	`title:` чувствителен к регистру.
 
-The markdown syntax used in the docs is the  [GitHub-Flavored-Markdown](https://help.github.com/articles/github-flavored-markdown), thus it's very convenient to directly edit the files via GitHub's web editor. 
+Синтаксис разметки, используемый в документах - это [GitHub-Flavored-Markdown](https://help.github.com/articles/github-flavored-markdown), поэтому очень удобно напрямую редактировать файлы через веб-редактор GitHub.
 
-### API documentation
-	
-Api documentation is provided in the `./api` folder, they are currently generated with [dox](https://github.com/HaxeFlixel/dox). You can view the API docs offline by running `nekotools server` in that directory and navigating to [localhost:2000](http://localhost:2000/).
+### Документация по API
 
-To generate the API docs yourself, you need to have dox installed (for instructions refer to [the readme](https://github.com/HaxeFlixel/dox/blob/master/README.md)).
+Документация по API находится в папке `./api`, она сгенерирована с помощью [dox](https://github.com/HaxeFlixel/dox). Вы можете просмотреть документацию в автономном режиме, запустив `nekotools server` в этом каталоге и перейдя по ссылке [localhost:2000](http://localhost:2000/).
 
-Then, either:
+Чтобы создавать документы API самостоятельно, необходимо установить dox (инструкции доступны [по ссылке](https://github.com/HaxeFlixel/dox/blob/master/README.md)).
 
-- Navigate to `api/dox-gen`
-- Run `haxe testdocs.hxml`
+Далее вы можете:
 
-or
+- Перейти в `api/dox-gen`
+- Запустить `haxe testdocs.hxml`
 
-- Run the "Test Docs" build task in VSCode
+или
 
-The docs will now be generated in the `api` folder.
+- Запустить таск сборки "Test Docs" в VSCode
 
-Note this will use your locally enabled haxelib flixel versions, e.g. if you have `haxelib git flixel` set to `dev` etc.
+Документы будут сгенерированы в папке `api`.
+
+Обратите внимание, что для этого будут использованы текущие версии библиотек haxelib flixel, например если у вас установлен `haxelib git flixel` в `dev` ветке и т.д.
