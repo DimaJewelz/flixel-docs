@@ -1,8 +1,8 @@
 ```
-title: "Install HaxeFlixel"
+title: "Установка HaxeFlixel"
 ```
 
-To install the latest stable version of HaxeFlixel, open a command prompt and run the following [Haxelib](http://lib.haxe.org/) commands:
+Для установки последней стабильной версии HaxeFlixel, откройте командную строку и выполните следующие команды [Haxelib](http://lib.haxe.org/):
 
 ``` bash
 haxelib install lime
@@ -10,47 +10,47 @@ haxelib install openfl
 haxelib install flixel
 ```
 
-After the installation is complete, you can compile games to HTML5, Flash and Neko out of the box.
+После завершения установки, вы сможете компилировать игры под платформы HTML5, Flash и Neko прямо из коробки.
 
-To easily install additional libraries (addons, ui, demos, tools, templates...) in a single step, just run:
+Для легкой установки дополнительных библиотек в один шаг (дополнений, ui, демо, инструментария, шаблонов...), просто выполните:
 
 ```bash
 haxelib run lime setup flixel
 ```
 
-### Install the `lime` command
+### Установка `lime`
 
 ```bash
 haxelib run lime setup
 ```
 
-This makes `lime` available as a command (alias for `haxelib run lime`).
+Это делает доступным команду `lime` (алиас для `haxelib run lime`).
 
-To compile to desktop and mobile targets, you have to make sure you have run the respective `lime setup` 
-commands. Each are specified in the 
+Для компиляции под десктоп и мобильные таргеты, вы должны убедиться, что запустили соответствующие команды `lime setup` 
+Каждая из них указана в 
 [OpenFL platform docs](http://www.openfl.org/learn/docs/advanced-setup/).
 
-### Install the `flixel` command
+### Установка `flixel` 
 
-Run the following two commands to install [flixel-tools](http://haxeflixel.com/documentation/flixel-tools/) (needed for project templates among other things):
+Выполните две команды для установки [flixel-tools](http://haxeflixel.com/documentation/flixel-tools/) (требуется, помимо прочего, для шаблонов проектов):
 
 ``` bash
 haxelib install flixel-tools
 haxelib run flixel-tools setup
 ```
 
-### Updating HaxeFlixel
+### Обновление HaxeFlixel
 
-If a new version of Flixel has been released, and you want to update to it, you can use the following command to do so:
+Если выпущены новые версии HaxeFlixel, и вы хотите обновиться до них, используйте следующую команду:
 
 ``` bash
 haxelib update flixel
 ```
 
-If you wanted to update e.g. `flixel-addons` instead, just replace `flixel` with `flixel-addons`.
+Если вы хотите обновить например `flixel-addons`, просто замените `flixel` на `flixel-addons`.
 
-To stay informed about new releases, you can follow [@HaxeFlixel](https://twitter.com/HaxeFlixel) on Twitter or check out our [Blog](http://haxeflixel.com/blog/) from time to time.
+Чтобы быть в курсе новых релизов, вы можете подписаться на наш Twitter [@HaxeFlixel](https://twitter.com/HaxeFlixel) или наш блог [Blog](http://haxeflixel.com/blog/).
 
-### Development version
+### Dev версия
 
-If you are interested in using bleeding edge code from the development branch [on GitHub](https://github.com/HaxeFlixel/flixel), see [instructions here](/documentation/install-development-flixel).
+Если вы хотите использовать код из версии в разработке [на GitHub](https://github.com/HaxeFlixel/flixel), ознакомьтесь с [инструкциями](/documentation/install-development-flixel).
