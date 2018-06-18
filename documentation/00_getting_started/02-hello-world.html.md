@@ -2,23 +2,23 @@
 title: "Hello World"
 ```
 
-"Hello World" is a [common example](http://en.wikipedia.org/wiki/Hello_world_program) of getting started with programming, here we will show you how to add Hello World with HaxeFlixel's `FlxText`. You can compile this test for any supported target platform.
+"Hello World" это [общий пример](http://en.wikipedia.org/wiki/Hello_world_program) начала программирования. В этом разделе мы покажем как отобразить на экране текст Hello World с помощью `FlxText`. Вы можете скомпилировать этот пример под любую поддерживаемую платформу.
 
-Make sure you have installed Flixel, as well as set up the `lime` and `flixel` commands [as explained previously](/documentation/install-haxeflixel/).
+Убедитесь что вы установили Flixel, а также настроили команды `lime` and `flixel`, что было [описано ранее](/documentation/install-haxeflixel/).
 
-### Create a new HaxeFlixel Project
+### Создание нового проекта HaxeFlixel
 
-HaxeFlixel requires a basic structure of files for any project that you can automatically create with the `template` command (`tpl` for short).
+HaxeFlixel требует базовую структуру файлов для любого проекта, которую вы можете автоматически создать, используя команду `template` (короткая версия - `tpl`).
 
 ``` bash
 flixel tpl -n "HelloWorld"
 ```
 
-You will now see a new folder named "HelloWorld" with all the files for your project being created automatically.
+Вы увидите новую папку "HelloWorld", в которой автоматически были созданы все необходимые файлы для проекта.
 
-### Add the "Hello World" `FlxText`
+### Добавление текста "Hello World" `FlxText`
 
-Adding the text is as simple as opening the `PlayState.hx` file in the newly created `source` folder. The file should look like this:
+Чтобы добавить текст, откройте файл `PlayState.hx` в созданной директории `source`. Его содержание должно выглядеть вот так:
 
 ``` haxe
 package;
@@ -39,7 +39,7 @@ class PlayState extends FlxState
 }
 ```
 
-All you need to do is add the following three lines to the `create()` function (and save the file):
+Все что вам необходимо сделать, это добавить три строчки кода в функцию `create()` и сохранить файл:
 
 ``` haxe
 var text = new flixel.text.FlxText(0, 0, 0, "Hello World", 64);
@@ -47,11 +47,11 @@ text.screenCenter();
 add(text);
 ```
 
-This will create a new `FlxText` instance with font size `64`, center it on the screen and `add()` it so it is displayed.
+Этот код создает новое текстовое поле `FlxText` с размером шрифта `64`, центрирует его на экране, и добавляет его (`add()`) в список отображения .
 
-### Test the Project
+### Тестирование проекта
 
-Return to your command line window - now we can compile the project. Without running the `lime setup` commands you can compile to HTML5, Flash and Neko out of the box with these commands:
+Теперь вернемся к командной строке - сейчас мы можем скомпилировать проект. Без запуска команды `lime setup`, вы можете компилировать под таргеты HTML5, Flash и Neko из коробки, используя следующие команды:
 
 ``` bash
 lime test html5
@@ -59,6 +59,6 @@ lime test flash
 lime test neko
 ```
 
-If you struggled through any part of this tutorial, [get in touch with the community](/documentation/community/) for support.
+Если что-то в этом уроке вызвало затруднения, обратитесь в любой [канал сообщества](/documentation/community/) для помощи.
 
 ![](../images/00_getting_started/hello-world.png)

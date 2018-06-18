@@ -4,130 +4,130 @@ title: "Visual Studio Code"
 
 [![](../images/00_getting_started/vscode/vscode-plus-extensions.png)](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-extension-pack)
 
-[Visual Studio Code](https://code.visualstudio.com/) is an open-source, cross-platform, lightweight code editor by Microsoft. The [Haxe extension](https://marketplace.visualstudio.com/items?itemName=nadako.vshaxe) seamlessly integrates with the compiler's [IDE services](https://haxe.org/manual/cr-completion.html) and uses them for:
+[Visual Studio Code](https://code.visualstudio.com/) это кроссплатформенный редактор кода от Microsoft с открытым кодом. [Расширение для Haxe](https://marketplace.visualstudio.com/items?itemName=nadako.vshaxe) интегрируется в [IDE сервисы компилятора](https://haxe.org/manual/cr-completion.html) и используется для:
 
-- Code Completion
-- Go to Definition
-- Go to Symbol
-- Find Usages
-- Finding Unused Imports
-- etc...
+- Автодополнения кода
+- Перехода к определению 
+- Перехода к символу
+- Поиска использований
+- Поиска неиспользованных импортов
+- и др.
 
-You can find detailed documentation for the Haxe extension in the [Wiki](https://github.com/vshaxe/vshaxe/wiki), this page focuses on the Flixel-specific parts.
+Вы можете найти подробную документацию для расширения Haxe в [Wiki](https://github.com/vshaxe/vshaxe/wiki). Текущая страница нацелена на детали, специфичные для Flixel.
 
-### Installation
+### Установка
 
-- Download and install the latest version of [Visual Studio Code](https://code.visualstudio.com/).
-- Go to the Extensions tab and install the [Lime extension](https://marketplace.visualstudio.com/items?itemName=openfl.lime-vscode-extension). This automatically installs the Haxe extension as well.
+- Скачайте и установите последнюю версию [Visual Studio Code](https://code.visualstudio.com/).
+- Перейдите во вкладку Расширений и установите [расширение Lime](https://marketplace.visualstudio.com/items?itemName=openfl.lime-vscode-extension). Это также установит расширения для Haxe.
 
     ![](../images/00_getting_started/vscode/lime-installation.png)
 
-### Project Configuration
+### Конфигурация проекта
 
-VSCode stores its project-specific settings in a `.vscode` subfolder - [flixel-tools](http://haxeflixel.com/documentation/flixel-tools/) can create one with sensible defaults for Flixel projects. Just select VSCode as your preferred editor during the `setup` command, or add `-ide vscode` to the command you're running.
+VSCode хранит настройки проекта в подпапке `.vscode` - [flixel-tools](http://haxeflixel.com/documentation/flixel-tools/) может создать такие настройки для проектов на Flixel. Для этого укажите VSCode в качестве основного редактора во время выполнения команды `setup` или добавьте `-ide vscode` в команду, которую вы запускаете.
 
-**Note:** make sure you have the latest versions of flixel-tools and flixel-templates:
+**Обратите внимание:** убедитесь, что у вас установлены последние версии flixel-tools и flixel-templates:
 
 ```
 haxelib update flixel-tools
 haxelib update flixel-templates
 ```
 
-You have several options for creating projects with a `.vscode` configuration:
+Существует несколько опций для создания проекта с конфигурацией `.vscode`:
 
-1. Create a new, empty project:
+1. Создание нового, пустого проекта:
 
     ```
     flixel template -n "VSCodeTest" -ide vscode
     ```
 
-2. Create a new project based on one of the [demos](/demos):
+2. Создание нового проекта на основе одного из [демо проектов](/demos):
 
     ```
     flixel create -ide vscode
     ```
 
-3. Add the `.vscode` folder to a project that already exists, for instance the current working directory:
+3. Добавление папки `.vscode` в уже существующий проект, например текущий рабочий каталог:
 
     ```
     flixel configure . -ide vscode
     ```
 
-4. Add VSCode config files to an entire directory of projects, like flixel-demos:
+4. Добавление файлов конфигурации VSCode в весь каталог проектов, таких как flixel-demos:
 
     ```
     flixel configure C:\HaxeToolkit\haxe\lib\flixel-demos\git -ide vscode
     ```
 
-### Code Completion
+### Автодополнение кода
 
-Once you've installed the Lime extension and have a project with a `.vscode` folder, just open it with `File` -> `Open Folder`. If the workspace was correctly detected as a Lime project (needs a `Project.xml` file), you should notice these dropdown menus appearing in the status bar:
+После установки расширения Lime и создания проекта с папкой `.vscode`, откройте проект в редакторе `File` -> `Open Folder`. Если директория определяется как Lime-проект (должен присутствовать файл `Project.xml`), вы увидите выпадающие меню в строке состояния:
 
 ![](../images/00_getting_started/vscode/lime-dropdowns.png)
 
-Code completion features should work out of the box now:
+Функция автодополнения кода теперь должна работать:
 
 ![](../images/00_getting_started/vscode/completion.png)
 
-If you're having trouble, please refer to the Haxe extension's [Troubleshooting guide](https://github.com/vshaxe/vshaxe/wiki/Troubleshooting).
+Если возникли сложности, обратитесь к статье [поиск неисправностей в расширении Haxe](https://github.com/vshaxe/vshaxe/wiki/Troubleshooting).
 
-### Building
+### Сборка
 
-Building and running your projects in VSCode is done through _tasks_. You can view the list of available tasks via `Tasks` -> `Run Task...`:
+Сборка и запуск ваших проектов в VSCode сделана с помощью _задач_. Вы можете посмотреть список доступных задач через `Tasks` -> `Run Task...`:
 
 ![](../images/00_getting_started/vscode/tasks.png)
 
-To build and run your project, select the `lime: test` task. With Flixel's template, this is configured as the default build task, so you can also invoke it directly via `Tasks` -> `Run Build Task...` or by pressing `Ctrl+Shift+B`:
+Чтобы скомпилировать и запустить ваш проект, выберите задачу `lime: test`. С шаблоном Flixel этот таск стоит по умолчанию для компиляции, поэтому вы можете также вызвать его непосредственно через `Tasks` -> `Run Build Task...` или нажатием `Ctrl+Shift+B`:
 
 ![](../images/00_getting_started/vscode/run-build-task.png)
 
-You may want to assign a shortcut to `Run Task...` or change the shortcut for `Run Build Task...` to something more convenient such as `F5`. You can do so in `File` -> `Preferences` -> `Keyboard Shortcuts`.
+Вы можете назначить горячую клавишу, чтобы запустить таск `Run Task...` или поменять горячие клавиши для `Run Build Task...` на что-то более удобное, например `F5`. Вы можете сделать это в `File` -> `Preferences` -> `Keyboard Shortcuts`.
 
-Finally, you can change the target and build configuration (Debug, Release, Final) by using the dropdown menus in the status bar:
+Наконец, вы можете изменить таргет и конфигурацию билда (Debug, Release, Final) с помощью выпадающего меню в строке состояния:
 
 ![](../images/00_getting_started/vscode/change-config.gif)
 
 
-### Compiler Errors / Problems View
+### Ошибки компилятора / Окно ошибок
 
-By default, compiler errors and warnings are shown in the _Terminal_ view at the bottom of the screen. You can navigate to the source of the error via `Ctrl`+`Click` on the file path:
+По умочанию ошибки компилятора и предупреждения отображаются в окне _Terminal_ внизу экрана. Вы можете перейти к источнику ошибки через комбинацию клавиш `Ctrl`+`Click` на пути файла:
 
 ![](../images/00_getting_started/vscode/terminal.png)
 
-Alternatively, you can switch to the _Problems_ tab which has a nicer presentation. It shows errors / warnings from compilation as well as diagnostics that are updated each time you save a file:
+Также вы можете переключиться на вкладку _Problems_, которая имеет более удобное оформление. Оно показывает ошибки / предупреждения из компиляции, а также диагностику, которая обновляется каждый раз при сохранении файла.
 
 ![](../images/00_getting_started/vscode/problems.png)
 
-### Flash Debugging
+### Отладка во Flash
 
-The `.vscode` template from flixel-tools already includes the `launch.json` needed for Flash debugging. To make use of it, you also need to install the [Flash Debugger](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-debug) extension. Make sure that:
+Шаблон `.vscode` из flixel-tools уже включает `launch.json`, требуемый для отладки во Flash. Чтобы использовать отладчик, вам также необходимо установить расширение [Flash Debugger](https://marketplace.visualstudio.com/items?itemName=vshaxe.haxe-debug). Убедитесь, что:
 
-1. Java is installed and available.
-2. The "Flash Player projector content debugger" is associated with `.swf` files.
+1. Java установлен и доступен.
+2. Плеер "Flash Player projector content debugger" ассоциирован с файлами `.swf`.
 
-Check the [usage section of the Readme](https://github.com/vshaxe/flash-debugger#usage) for detailed instructions.
+Ознакомьтесь с разделом использования в [Readme](https://github.com/vshaxe/flash-debugger#usage) для детальных инструкций.
 
-After this, you just have to select one of the launch configs to start debugging:
+После этого вам просто нужно выбрать одну из конфигураций запуска, чтобы начать отладку:
 
 ![](../images/00_getting_started/vscode/launch-configs.png)
 
-Here's what it should look like when you hit a breakpoint:
+Вот как это должно выглядеть, когда вы нажимаете breakpoint:
 
 <img src="../images/00_getting_started/vscode/flash-debugging.png" style="width:100%;" />
 
-### HTML5 Debugging
+### Отладка HTML5 
 
-The default `launch.json` has a launch config for debugging the HTML5 target in Chrome as well. This requires the [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) extension to be installed. Similar extensions exist for other browsers (e.g. [Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)), but the launch configuration needed for them should be similar.
+По умолчанию файл `launch.json` имеет конфигурацию запуска для отладки HTML5 в Chrome. Это требует установленного расширения [отладчика в Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome). Аналогичные расширения есть и для других браузеров (например [Firefox](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug)), конфигурация запуска для них примерно одинаковая.
 
-To start debugging, follow these steps:
+Чтобы начать отладку, выполните эти шаги:
 
-- Select `HTML5` and `Debug` in the status bar:
+- Выберите `HTML5` и `Debug` в строке состояния:
 
   ![](../images/00_getting_started/vscode/html5-debug.png)
 
-- Run the `lime test` task (see "Building" section earlier on this page).
+- Запустите задачу `lime test`(см раздел "Сборка" выше).
 
-- Go to the Debug menu, select the HTML5 configuration and start it:
+- Перейдите в меню отладки, выберите конфигурацию HTML5 и запустите ее:
 
   ![](../images/00_getting_started/vscode/launch-configs-html5.png)
 
