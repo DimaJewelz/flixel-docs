@@ -2,20 +2,20 @@
 title: "Where to now?"
 ```
 
-If you have successfully compiled a Hello World sample, the best place we recommend is to jump to our large collection of demos to learn by example, try improving a game and pulling one apart to see how it works:
+Если вы успешно выполнили пример Hello World, лучше всего далее перейти к нашей огромной коллекции демо проектов, чтобы научиться на их примере.
 
-*   [Demos](http://haxeflixel.com/demos)
-*   [Source for the demos](https://github.com/HaxeFlixel/flixel-demos/tree/master)
+*   [Раздел с демо](http://haxeflixel.com/demos)
+*   [Исходники демо-проектов](https://github.com/HaxeFlixel/flixel-demos/tree/master)
 
-If you are totally new to Flixel, please review our Handbook here:
+Если вы новичок во Flixel, ознакомьтесь с Руководством ниже:
 
-*   [Handbook](http://haxeflixel.com/documentation/haxeflixel-handbook/)
+*   [Руководство](http://haxeflixel.com/documentation/haxeflixel-handbook/)
 
-For former AS3 developers, you can get a quick start on Haxe from these:
+Для бывших разработчиков AS3, можете почитать быстрый старт на Haxe здесь:
 
-*   [AS3 and Haxe Comparison](http://www.openfl.org/archive/developer/documentation/actionscript-developers/)
+*   [Сравнение AS3 и Haxe](http://www.openfl.org/archive/developer/documentation/actionscript-developers/)
 *   [​Haxe API](http://api.haxe.org/)
 
-For ways to get in touch with the community, check out this list of [various communication channels](/documentation/community/).
+Для того, чтобы связаться с сообществом, ознакомьтесь с этим списком [каналов связи](/documentation/community/).
 
-Furthermore, this documentation and website is the front of HaxeFlixel information and we welcome additions from users like you. :)
+Кроме того, эта документация и веб-сайт являются основным источником информации о HaxeFlixel, и мы приветствуем ее дополнение от таких пользователей, как вы. :)

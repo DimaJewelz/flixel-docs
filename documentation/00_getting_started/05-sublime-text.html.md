@@ -2,10 +2,10 @@
 title: "Sublime Text"
 ```
 
-[Sublime Text](http://www.sublimetext.com/) is a very popular, cross-platform editor that has significant Haxe and OpenFL support provided through an open-source plugin.
-If you are a Mac, Linux or Windows user, it is one of the most popular choices for Haxe development.
+[Sublime Text](http://www.sublimetext.com/) - очень популярный, кроссплатформенный редактор, с потрясающей поддержкой Haxe и OpenFL, которую обеспечивает open-source плагин.
+Если вы пользуетесь Mac, Linux или Windows, то это наиболее популярный выбор для разработки на Haxe.
 
-The plugin is located on [GitHub](https://github.com/clemos/haxe-sublime-bundle).
+Плагин размещен на [GitHub](https://github.com/clemos/haxe-sublime-bundle).
 
-To install the Sublime Text plugin, follow the [official instructions](https://github.com/clemos/haxe-sublime-bundle/blob/master/README.markdown). 
-Alternatively, you might find [this unofficial video guide](http://www.youtube.com/watch?v=ePO1Rjv7HNs) useful.
+Чтобы установить плагин, следуйте [официальной инструкции](https://github.com/clemos/haxe-sublime-bundle/blob/master/README.markdown). 
+Также можете ознакомиться с [неофициальным видео уроком](http://www.youtube.com/watch?v=ePO1Rjv7HNs).

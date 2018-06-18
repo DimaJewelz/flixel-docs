@@ -2,25 +2,25 @@
 title: "FlashDevelop"
 ```
 
-[FlashDevelop](http://www.flashdevelop.org/) is a free and open source (MIT license) source code editor and offers first class support for Haxe development: great and fast code completion & code generation, projects compilation & debugging, plenty of project templates, SWF/SWC exploration, etc. FlashDevelop is one of the most popular Haxe IDEs.
+[FlashDevelop](http://www.flashdevelop.org/)  - бесплатный open source редактор кода, предоставляет отличную поддержку для разработки под Haxe: быстрое автодополнение и генерация кода, компиляция проектов и отладка, множество шаблонов проекта и др. FlashDevelop один из самых популярных IDE для Haxe.
 
-FlashDevelop is more generally a great web developer IDE with integrated source-control support
-(svn, git, mercurial), tasks/todo, snippets, XML/HTML/CSS completion and built-in zen-coding for HTML.
+FlashDevelop - это отличная IDE для веб-разработчиков с интегрированной поддержкой управления версиями
+(svn, git, mercurial), задачами/todo списками, сниппетами, автодополнениями XML/HTML/CSS и встроенным zen-coding для HTML.
 
-See FlashDevelop wiki for more information: http://www.flashdevelop.org/wikidocs/index.php
+Ознакомьтесь с wiki страницей для более подробной информации: http://www.flashdevelop.org/wikidocs/index.php
 
-To install FlashDevelop please see the official documentation for detailed instructions: http://www.flashdevelop.org/wikidocs/index.php?title=Installation
+Для установки FlashDevelop следуйте официальной инструкции в документации: http://www.flashdevelop.org/wikidocs/index.php?title=Installation
 
-### Installing HaxeFlixel
+### Установка HaxeFlixel
 
-In FlashDevelop you can install Haxe and/or HaxeFlixel and its template easily from the AppMan: (Tools -> Install Software...). Select items individually or click the green HaxeFlixel selector link on the bottom and then click Install. After the install is finished, restart FlashDevelop so that the changes get picked up properly.
+Во FlashDevelop вы можете установить Haxe и/или HaxeFlixel и его шаблонами из окна AppMan: (Инструменты -> Установка программ...). Выберите отдельные элементы или нажмите на зеленую ссылку HaxeFlixel внизу и затем нажмите Установить. После завершения установки, перезапустите FlashDevelop, чтобы изменения вступили в силу. 
 
 <img src="../images/00_getting_started/fd-appman-flixel.jpg" style="width:100%;" />
 
 <img src="../images/00_getting_started/fd-flixel-template.jpg" style="width:100%;" />
 
-**It's encouraged you [install the latest development version](http://www.flashdevelop.org/community/viewtopic.php?f=9&amp;t=3529) and [report any bugs](https://github.com/fdorg/flashdevelop/issues) you encounter. New features are added constantly to improve Haxe programming with FlashDevelop.**
+**Рекомендуется [установить последнюю dev версию](http://www.flashdevelop.org/community/viewtopic.php?f=9&amp;t=3529), [сообщайте](https://github.com/fdorg/flashdevelop/issues) о любых ошибках, которые найдете. Новый функционал постоянно добавляется для улучшения программирования на Haxe во FlashDevelop.**
 
-### Contributing
+### Содействие
 
-You can contribute to FlashDevelop through their [GitHub repository](https://github.com/fdorg/flashdevelop).
+Вы можете поддержать разработку FlashDevelop через их [GitHub репозиторий](https://github.com/fdorg/flashdevelop).
