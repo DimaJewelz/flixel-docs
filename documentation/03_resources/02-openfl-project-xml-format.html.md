@@ -1,12 +1,12 @@
 ```
-title: "XML Project Format"
+title: "XML формат проекта"
 ```
 
-Every OpenFL project uses an XML file to setup the compile settings for your projects depending on your chosen target. This includes stage size, source paths, asset paths and more.
+Каждый OpenFL проект использует XML файл для установки настроек компиляции вашего проекта, в зависимости от выбранного таргета. Этот файл включает размер сцены, пути к исходникам, пути к ресурсам и др.
 
-[Click here to see the Project.xml from the default HaxeFlixel template.](http://github.com/HaxeFlixel/flixel-templates/blob/master/default/Project.xml.tpl)
+[Кликните тут, чтобы посомтреть Project.xml из стандартного шаблона проекта HaxeFlixel.](http://github.com/HaxeFlixel/flixel-templates/blob/master/default/Project.xml.tpl)
 
-This is a complete specification of the XML file:
+Здесь находится полная спецификация XML файла:
 
-[OpenFL Project Format](https://gist.github.com/jgranick/1763850#file-gistfile1-xml)
+[OpenFL формат проекта](https://gist.github.com/jgranick/1763850#file-gistfile1-xml)
 <gist>1763850</gist>

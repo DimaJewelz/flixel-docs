@@ -1,46 +1,46 @@
 ```
-title: "Using Haxelib"
+title: "Использование Haxelib"
 ```
 
-Haxelib is a package manager and utility that comes with your Haxe install. Here are the most used commands, the full usage docs are [available here](http://haxe.org/doc/haxelib/using_haxelib).
+Haxelib это менеджер пакетов и утилита, которая устанавливается вместе с Haxe. Ниже примеры наиболее часто используемых команд, полный список [доступен тут](http://haxe.org/doc/haxelib/using_haxelib).
 
-### Installing a Library
+### Установка библиотеки
 
-Install a Haxelib library from [lib.haxe.org](http://lib.haxe.org/):
+Установка библиотеки Haxelib с [lib.haxe.org](http://lib.haxe.org/):
 
 ```
 haxelib install <library>
 ```
 
-Install a Haxelib library from Git:
+Установка бибилотеки Haxelib через Git:
 
 ```
 haxelib git <library> <url> <branch>
 ```
 
-_Note: `haxelib git` enables the development directory for that library, which silently prevents `haxelib set` from working. Use `haxelib dev <library>` to disable it._
+_Обратите внимание: `haxelib git` подключает dev версию это библиотеки, которая запрещает использование команды `haxelib set`. Используйте команду `haxelib dev <library>` чтобы отключить это._
 
-Update your Haxelib libraries, including the ones from Git:
+Обновление ваших Haxelib библиотек, включая те, который были установлены с помощью Git:
 
 ```
 haxelib upgrade
 ```
 
-Change to different version of a library:
+Переключиться на другую версию библиотеки:
 
 ```
 haxelib set <library> <version>
 ```
 
-Remove a library:
+Удалить библиотеку:
 
 ```
 haxelib remove <library>
 ```
 
-### Updating Haxelib itself
+### Обновление самой Haxelib
 
-To make sure you are using the latest version of Haxelib you can run the `selfupdate` command.
+Чтобы убедиться, что вы используете последнюю версию Haxelib, вы можете запустить команду `selfupdate`.
 
 ```
 haxelib selfupdate

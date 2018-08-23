@@ -1,8 +1,8 @@
 ```
-title: "Resources"
+title: "Ресурсы"
 rootDoc: true
 ```
 
-Developing games in general is made easier by making the most of the resources in communities both online and offline. 
+Разработка игр упрощается за счет использования ресурсов в сообществах в интернете и в офлайне.
 
-We are here collecting resources to help you learn and make games. Code snippets, tutorials and general information for game development is all wanted, so please make a pull request to these pages and make these resources even better!
+Здесь мы собираем различные ресурсы, чтобы помочь вам в обучении и создании игр. Любые полезные примеры кода, туториалы и общая информация по геймдеву будет полезна, поэтому вы всегда можете сделать pull request в эти страницы и добавить свои полезные ресурсы.

@@ -1,39 +1,39 @@
 ```
-title: "FAQ"
+title: "Часто задаваемые вопросы"
 ```
 
-#### Do I have to learn Flixel (AS3) before HaxeFlixel?
-No, you have to learn HaxeFlixel to use HaxeFlixel, although previous experience with the AS3 version will help.
+#### Необходимо ли мне сначала выучить Flixel (AS3) до HaxeFlixel?
+Нет, возможно сразу перейти к изучению HaxeFlixel, хотя если у вас есть опыт с AS3, это вам поможет. 
 
-#### Do I have to learn ActionScript before Haxe?
-No, although previous experience will help.
+#### Необходимо ли мне изучить ActionScript до Haxe?
+Нет, хотя такой опыт вам не помешает.
 
-#### Do I have to learn OpenFL to use HaxeFlixel?
-No, HaxeFlixel abstracts it completely.
+#### Необходимо ли мне изучить OpenFL чтобы использовать HaxeFlixel?
+Нет, HaxeFlixel полностью перекрывает его.
 
-#### Are there any tutorials?
+#### Где я могу найти еще туториалы?
 
-- [@SeiferTim's](https://twitter.com/SeiferTim) [Dungeon Crawler Tutorial](http://haxeflixel.com/documentation/tutorials/)
+- [@SeiferTim's](https://twitter.com/SeiferTim) [Dungeon Crawler туториал](http://haxeflixel.com/documentation/tutorials/)
 
-- [atomicptr's](https://github.com/atomicptr/GameMechanicExplorer-HaxeFlixel) [Game Mechanic Explorer port](http://gme.qr9.de/)
+- [atomicptr's](https://github.com/atomicptr/GameMechanicExplorer-HaxeFlixel) [Game Mechanic Explorer порт](http://gme.qr9.de/)
 
-- [Videos from Christopher Butler](https://www.youtube.com/watch?v=LpKvSPwHOP8&list=PLi0ypjD5PcV9xdjycW0hYi_HD297012tE)
-(covering everything from installation to prototyping a platformer).
+- [Видео от Christopher Butler](https://www.youtube.com/watch?v=LpKvSPwHOP8&list=PLi0ypjD5PcV9xdjycW0hYi_HD297012tE)
+(охватывает все: от установки, до прототипирования платформера).
 
-#### I found a bug, where to report?
-On the [official GitHub repository](https://github.com/HaxeFlixel/flixel/issues).
+#### Я нашел ошибку, куда я могу сообщить?
+В [официальный репозиторий GitHub](https://github.com/HaxeFlixel/flixel/issues).
 
-#### Will next-gen consoles be supported?
-Eventually, yes! Read more about it [here](https://groups.google.com/d/topic/haxeflixel/NUOpgGUKMvE/discussion).
+#### Будут ли поддерживаться новые консоли?
+В конце концов - да! Почитайте об этом побольше [тут](https://groups.google.com/d/topic/haxeflixel/NUOpgGUKMvE/discussion).
 
-#### My sounds are lagging!?
-On some platforms, it helps to manually cache sounds: `FlxG.sound.cache("sound");` or `FlxG.sound.cacheAll();` to do all at once.
+#### Мои звуки прерываются!?
+На некоторых платформах можно попробовать вручную кешировать звуки `FlxG.sound.cache("sound");` or `FlxG.sound.cacheAll();` чтобы кешировать все сразу.
 
-#### My player falls off-screen after walking a certain distance!
-Collisions are limited to the area defined by `FlxG.worldBounds`. For example in platformers where this area needs to be larger, you need to adjust it manually.
+#### Мой игрок падает за экран после прохождения некоторого расстояния!
+Столкновения ограничены областью, заданной в `FlxG.worldBounds`. Например, в платформерах, где эта область должна быть больше, вам необходимо настроить ее вручную.
 
-#### Can I make 3D games with HaxeFlixel?
-No, the framework is limited to 2D graphics.
+#### Могу я делать 3D игры на HaxeFlixel?
+Нет, фреймворк ограничен только 2D графикой.
 
-#### How do I protect my assets from being stolen?
-If you add `embed="true"` to the `<assets path="assets">` tag of the `Project.xml`, the asset files are embedded into the `.exe`.
+#### Как я могу защитить свои ассеты от кражи?
+Если вы добавите `embed="true"` в тег `<assets path="assets">` файла `Project.xml`, ассеты будут вшиты в `.exe`.

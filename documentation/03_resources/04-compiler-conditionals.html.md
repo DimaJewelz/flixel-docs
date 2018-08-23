@@ -1,57 +1,57 @@
 ```
-title: "Compiler Conditionals"
+title: "Условная компиляция"
 ```
 
-The Haxe compiler provides a robust solution for cross-platform development where you can use operators to define what targets receive your code. This functionality is invaluable for HaxeFlixel since we are targeting native mobile / desktop and web targets, all with different capabilities.
+Компилятор Haxe обеспечивает надежное решение для кросс-платформенной разработки, вы можете использовать операторы для определения какие таргеты получают конкретные строки кода. Этот функционал необходим для HaxeFlixel, т.к. мы нацелены на различные платформы: мобильные платформы, десктоп и веб, каждая с различными особенностями.
 
-[Conditional Compilation in the Haxe Manual](https://haxe.org/manual/lf-condition-compilation.html)
+[Условная компиляция в руководстве Haxe](https://haxe.org/manual/lf-condition-compilation.html)
 
-A basic example may include logic like this:
+Простой пример может включать следующую логику:
 
 ``` haxe
 #if desktop
 
-// desktop only code
+// код только для платформы desktop
 
 #elseif mobile
 
-// mobile only code
+// код только для мобильных платформ
 
 #end
 ```
-Conditionals relevant to your HaxeFlixel games may include:
+Условиями, относящиеся к играм на HaxeFlixel могут быть:
 
 ```
 mobile, desktop, native, web
 ios, android, windows, mac, linux, html5
 flash, cpp, neko, js
 ```
-Multiple targets can be used together:
+Несколько таргетов могут быть использованы вместе:
 
 
 ```
 #if (mac || linux || android)
 
-// code specific for these platforms
+// код, требуемый для этих платформ
 
 #end
 ```
 
-To define your own it is as easy as adding to your ```Project.xml```:
+Также легко определеить собственное условие, добавив его в ```Project.xml```:
 
 ```
 <set name="magic" />
 ```
 
-Now this will work:
+Теперь это будет работать:
 
 ```
 #if magic
-//Create a dragon
+//Создаем дракона
 #end
 ```
 
-Since Haxe lets you use some logic with the conditionals you can enable something just for mobile, as in:
+Поскольку Haxe позволяет вам использовать некоторую логику с условиями, вы можете включить что-то только для мобильных устройств, например:
 
 ```
 <set name="magic" if="mobile"/>

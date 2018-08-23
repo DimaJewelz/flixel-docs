@@ -1,8 +1,8 @@
 ```
-title: "Cheat Sheet"
+title: "Шпаргалка"
 ```
 
-## [FlxSprite](http://haxeflixel.com/documentation/flxsprite) (Base)
+## [FlxSprite](http://haxeflixel.com/documentation/flxsprite) (Базовый)
 
 ```haxe
 package;
@@ -25,7 +25,7 @@ class MySprite extends FlxSprite
 ```
 
 
-## [FlxState](http://haxeflixel.com/documentation/flxstate) (Base)
+## [FlxState](http://haxeflixel.com/documentation/flxstate) (Базовый)
 
 ```haxe
 package;
@@ -59,11 +59,11 @@ FlxG.switchState(new MyState());
 ```haxe
 loadGraphic("assets/my_sprite.png");
 
-// OR dynamically create a rect
-makeGraphic(100, 100, 0xFFFFFFFF); // width, height, color (AARRGGBB hexadecimal)
+// ИЛИ динамически создаем прямоугольник
+makeGraphic(100, 100, 0xFFFFFFFF); // ширина, высота, цвет (шестнадцатеричный AARRGGBB)
 
-// to update bounding box by default (positioned on top left corner of the sprite)
-updateHitbox(); // or offset.set(10, 5); to shift bounding box 10 pixels horizontally and 5 pixels vertically
+// обновляем дефолтный хитбокс (расположенный в верхнем левом углу спрайта)
+updateHitbox(); // либо offset.set(10, 5); чтобы сместить хитбокс на 10 пикселей по горизонтали и на 5 по вертикали
 ```
 
 ## FlxText
@@ -77,7 +77,7 @@ import flixel.util.FlxColor;
 ```
 
 ```haxe
-myText = new FlxText(0, 0, 500); // x, y, width
+myText = new FlxText(0, 0, 500); // x, y, ширина
 myText.text = "Hello World";
 myText.setFormat("assets/font.ttf", 20, FlxColor.WHITE, CENTER);
 myText.setBorderStyle(OUTLINE, FlxColor.RED, 1);
@@ -93,7 +93,7 @@ import flixel.ui.FlxButton;
 ```haxe
 myButton = new FlxButton(0, 0, "Label", myCallback);
 
-// Custom graphics
+// собственная графика
 myButton.loadGraphic("assets/custom.png");
 ```
 
@@ -103,49 +103,49 @@ function myCallback():Void
 }
 ```
 
-* **myButton.label** is a `FlxText`, use `setFormat()` and `setBorderStyle()` to customise.
+* **myButton.label** это `FlxText`, используйте `setFormat()` и `setBorderStyle()` для кастомизации.
 
 
-## Sound Effects and Music
-With the stock `Project.xml`, simply place them in your project's `assets/music` and `assets/sounds` subfolders and they're ready to use.
+## Звуковые эффекты и музыка
+Если вы не изменяли пути в `Project.xml`, положите звуковые файлы в директории `assets/music` и `assets/sounds`. Звуковые файлы готовы к использованию в коде.
 
-Sound effects are usually in WAV format (44.1 kHz source).
+Обычно используют звуковые эффекты в WAV формате (44.1 kHz).
 
-Music must be in MP3 format (44.1 kHz source) for Flash, and OGG for everything else.  To support both Flash and non-Flash platforms without bundling both formats in your output, you can replace the stock `<assets>` tag in your `Project.xml` with this:
+Для Flash таргета музыка должна быть в MP3 формате (44.1 kHz) и в OGG фомарте для других таргетов. Для поддержки обоих типов платформ (флеш и остальных) без внерения обоих типов файлов в финальный билд проекта, вы можете заменить тег `<assets>` в файле `Project.xml` следующими строками:
 
 ```xml
 <assets path="assets" exclude="*.ogg" if="flash"/>
 <assets path="assets" exclude="*.mp3" unless="flash"/>
 ```
-Play in your code:
+Воспроизведение в коде:
 
 ```haxe
-// Play sound effect using AssetPaths
+// Воспроизведение звукового эффекта используя AssetPaths
 FlxG.sound.play(AssetPaths.mySound__wav);
-// Play sound effect without AssetPaths
+// Воспроизведение звукового эффекта не используя AssetPaths
 FlxG.sound.play("assets/sounds/mySound.wav");
 
-// Loop music, Flash only
+// Цикличное воспроизведение музыки (только Flash таргет)
 FlxG.sound.playMusic(AssetPaths.myMusic__mp3);
-// Loop music, non-Flash only
+// Цикличное воспроизведение музыки (все таргеты, кроме Flash)
 FlxG.sound.playMusic(AssetPaths.myMusic__ogg);
-// Loop music, Flash or non (getSound() adds .mp3 on Flash and .ogg otherwise)
+// Цикличное воспроизведение музыки для всех таргетов (метод getSound() добавляет .mp3 для Flash таргета и .ogg для всех остальных платформ)
 FlxG.sound.playMusic(FlxAssets.getSound("assets/music/myMusic"));
 ```
 
-## Keyboard Input
+## Ввод с клавиатуры
 
 ```haxe
-// 'A' key
+// Клавиша 'A'
 if (FlxG.keys.justPressed.A) {}
 if (FlxG.keys.pressed.A) {}
 if (FlxG.keys.justReleased.A) {}
 
-// Checking multiple keys:
+// Проверка нажатия нескольких клавиш:
 if (FlxG.keys.anyPressed([RIGHT, D])) {}
 ```
 
-#### Keys
+#### Клавиши
 `ANY`
 
 `A`...`Z`
@@ -181,7 +181,7 @@ if (FlxG.keys.anyPressed([RIGHT, D])) {}
 `NUMPADZERO` `NUMPADONE` `NUMPADTWO`...`NUMPADNINE`
 
 
-## [Mouse](http://haxeflixel.com/documentation/mouse) Input
+## Ввод с [мыши](http://haxeflixel.com/documentation/mouse)
 
 ```haxe
 if (FlxG.mouse.pressed) {}
@@ -189,37 +189,37 @@ if (FlxG.mouse.justPressed) {}
 if (FlxG.mouse.justReleased) {}
 ```
 
-#### Positional Data
+#### Координаты курсора
 ```haxe
-// Relative to world space
+// Относительно глобальной системы координат
 FlxG.mouse.x;
 FlxG.mouse.y;
 
-// Relative to screen
+// Относительно экрана
 FlxG.mouse.screenX;
 FlxG.mouse.screenY;
 ```
 
-#### Wheel (mouse scroll)
-Current "delta" value of mouse wheel. If the wheel was just scrolled up, it will have a positive value. If it was just scrolled down, it will have a negative value. If it wasn't just scroll this frame, it will be 0.
+#### Колесо мыши (скролл мышью)
+Значения свойство delta определяет в каком направлении было повернуто колесико мыши. Если вверх - то это св-во будет иметь положительное значение, если вниз - отрицательное. Если попорота колесика мыши в данном фрайме не было, то значение delta будет 0.
 
 ```haxe
 FlxG.mouse.wheel;
 ```
 
-#### Up, Down, Over, Out Callbacks per Object
+#### Колбеки нажатия кнопки мыши, отпускания кнопки мыши, наведения курсора на объект, отведения курсора от объекта
 
 ```haxe
 var clickableSprite:FlxSprite;
 
 // ...
 
-// register plugin in PlayState.create()
+// регистрируем плагин в PlayState.create()
 FlxMouseEventManager.init();
 
 // ...
 
-// register callbacks
+// регистрируем колбеки
 var pixelPerfect = false;
 FlxMouseEventManager.add(clickableSprite, mousePressedCallback, mouseReleasedCallback, null, null, false, true, pixelPerfect, [FlxMouseButtonID.LEFT, FlxMouseButtonID.RIGHT]);
 
@@ -229,11 +229,11 @@ function mousePressedCallback(sprite:FlxSprite)
 {
 	if (FlxG.mouse.justPressed)
 	{
-		// left button was pressed
+		// левая кнопка мыши была нажата
 	}
 	else if (FlxG.mouse.justPressedRight)
 	{
-		// right button was pressed
+		// правая кнопка мыши была нажата
 	}
 }
 
@@ -242,7 +242,7 @@ function mouseReleasedCallback(sprite:FlxSprite)
 }
 ```
 
-## Touch Input
+## Ввод с помощью касаний (тачей)
 
 ```haxe
 for (touch in FlxG.touches.list)
@@ -253,25 +253,25 @@ for (touch in FlxG.touches.list)
 }
 ```
 
-#### Positional Data
+#### Координаты касания
 ```haxe
-// Relative to world space
+// Относительно глобальной системы координат
 touch.x;
 touch.y;
-        
-// Relative to screen
+   
+// Относительно экрана
 touch.screenX;
 touch.screenY;
 ```
 
-* `touchPointID`: The unique ID of this touch.
+* `touchPointID`: Уникальный ID касания
 
-* `overlaps(objectOrGroup)`: Checks for overlap between this touch and another `FlxObject` or `FlxGroup`.
+* `overlaps(objectOrGroup)`: Проверяет пересечение между этим касанием и объектом `FlxObject` или `FlxGroup`.
 
 
-## Swipes (Input)
+## Ввод с помощью жестов (свайпов)
 
-"Swipes" from both mouse and touch input that have just been released:
+"Свайпы" с помощью мыши и касаний:
 
 ```haxe
 for (swipe in FlxG.swipes)
@@ -295,17 +295,17 @@ import flixel.util.FlxSignal;
 ```
 
 ```haxe
-// for signals that don't need data, use FlxSignal
+// для сигналов без данных используйте FlxSignal
 var signal = new FlxSignal();
-// for signals that need data, use FlxTypedSignal with the correct function type
+// для сигналов с данными используйте FlxTypedSignal с корректным типом функции
 var stringSignal = new FlxTypedSignal<String->Void>();
 ```
 
-Note: `FlxSignal` is nothing but a convenient shortcut for `FlxTypedSignal<Void->Void>`
+На заметку: `FlxSignal` это ни что иное, как удобная ссылка на `FlxTypedSignal<Void->Void>`
 
 ```haxe
-signal.add(voidCallback); // type must be Void->Void
-stringSignal.add(stringCallback); // type must be String->Void
+signal.add(voidCallback); // тип должен быть Void->Void
+stringSignal.add(stringCallback); // тип должен быть String->Void
 ```
 
 ```haxe
@@ -320,12 +320,11 @@ function stringCallback(text:String)
 ```
 
 ```haxe
-// this will print "Hello World"
 signal.dispatch();
 stringSignal.dispatch("World");
 ```
 
-You can have up to 4 parameters in your signal:
+В вашем сигнале может быть до 4 параметров:
 ```haxe
 var collisionNotify = new FlxTypedSignal<FlxObject->FlxObject->Bool->Bool->Void>();
 collisionNotify.add(collisionCallback);
@@ -340,7 +339,7 @@ import flixel.util.FlxTimer;
 ```
 
 ```haxe
-// time (seconds), callback, loops
+// время (в секундах), колбек, кол-во повторов
 new FlxTimer().start(10.0, myCallback, 3);
 ```
 
@@ -349,28 +348,28 @@ function myCallback(Timer:FlxTimer):Void
 {
 }
 ```
-* Setting `loops` to `0` results in an endless loop.
-* `reset(?NewTime)` restarts the timer, optionally with a new duration.
-* `cancel()` stops the timer and removes it from the timer manager.
+* Установка `loops` в `0` приведет к бесконечному числу повторений.
+* `reset(?NewTime)` перезапускает таймер, опционально с новой длительностью.
+* `cancel()` останавливает таймер и удаляет его из менеджера таймеров.
 
 
 ## FlxRandom
 
 ```haxe
-// (Int) between 0 and 10
+// (Int) от 0 до 10
 FlxG.random.int(0, 10);
 
-// (Float) between 0.0 and 10.0
+// (Float) от 0.0 до 10.0
 FlxG.random.float(0.0, 10.0);
 
-// (Bool) Chance by percent
-FlxG.random.bool(50); // 50% chance to return 'true'
-FlxG.random.bool(10); // 10% chance to return 'true'
+// (Bool) Шанс в процентах
+FlxG.random.bool(50); // 50% шанс, что функция вернет 'true'
+FlxG.random.bool(10); // 10% шанс, что функция вернет 'true'
 ```
 
 ## [FlxTween](http://haxeflixel.com/documentation/flxtween/)
 
-[Check the demo](http://haxeflixel.com/demos/FlxTween/) to visualize all `FlxTween` types.
+[Посмотрите демо](http://haxeflixel.com/demos/FlxTween/) чтобы увидеть визуализацию всех типов `FlxTween`.
 * **tween**(Object, Values, Duration, ?Options)
 
 ```haxe
@@ -379,7 +378,7 @@ import flixel.tweens.FlxEase;
 ```
 
 ```haxe
-// Moves sprite to position (100, 200) in 3 seconds
+// Перемещает спрайт в позицию (100, 200) за 3 секунды
 FlxTween.tween(sprite, { x: 100, y: 200 }, 3.0, { ease: FlxEase.quadInOut, complete: myCallback });
 ```
 
@@ -411,25 +410,25 @@ function callbackFunction(Tween:FlxTween):Void
 ```haxe
 { type: FlxTween.PINGPONG }
 ```
-* **FlxTween.BACKWARD:** plays tween in reverse direction
-* **FlxTween.LOOPING:** restarts immediately when it finishes.
-* **FlxTween.ONESHOT:** stops and remove itself from its core container when it finishes.
-* **FlxTween.PERSIST:** stops when it finishes.
-* **FlxTween.PINGPONG:** plays tween hither and thither
+* **FlxTween.BACKWARD:** проигрывает анимацию задом наперед.
+* **FlxTween.LOOPING:** после завершения автоматически начинает проигрываться с начала.
+* **FlxTween.ONESHOT:** останавливается и удаляет себя из контейнера после завершения анимации.
+* **FlxTween.PERSIST:** останавливается при завершении.
+* **FlxTween.PINGPONG:** проигрывает анимацию вперед и назад
 
-#### loopDelay
+#### Задержка зацикливания loopDelay
 ```haxe
-{ loopDelay: 1.0 } // 1 second
+{ loopDelay: 1.0 } // 1 секунда
 ```
 
-#### startDelay
+#### Задержка начала startDelay
 ```haxe
-{ startDelay: 2.0 } // 2 seconds
+{ startDelay: 2.0 } // 2 секунды
 ```
 
 ## FlxEase List
 
-[Check the demo](http://haxeflixel.com/demos/FlxTween/) to visualize all `FlxEase` types.
+[Посмотрите демо](http://haxeflixel.com/demos/FlxTween/) чтобы увидеть визуализацию всех типов `FlxEase`.
 
 * `backIn`, `backInOut`, `backOut`
 
@@ -461,11 +460,11 @@ function callbackFunction(Tween:FlxTween):Void
 * `sineIn`, `sineInOut`, `sineOut`
 
 
-## Containers ([FlxGroup](http://haxeflixel.com/documentation/flxgroup))
+## Контейнеры ([FlxGroup](http://haxeflixel.com/documentation/flxgroup))
 
-`FlxGroup` is a shortcut for `FlxTypedGroup<FlxBasic>`. Use `FlxTypedGroup<MyOwnClass>` if you need to access your own variables and functions when iterating over the container.
+`FlxGroup` является ссылкой на `FlxTypedGroup<FlxBasic>`. Используйте `FlxTypedGroup<MyOwnClass>` если вам нужен доступ к собственным переменным и функциям когда идет итерация по контейнеру.
 
-### Iteration
+### Итерация
 ```haxe
 for (member in myGroup)
 {
@@ -475,7 +474,7 @@ for (member in myGroup)
 ```
 
 
-## Collision
+## Столкновения
 
 ```haxe
 FlxG.overlap(ObjectOrGroup1, ObjectOrGroup2, myCallback);
@@ -487,54 +486,55 @@ function myCallback(Object1:FlxObject, Object2:FlxObject):Void
 }
 ```
 
-Or use `FlxG.collide()` which calls `FlxG.overlap()` and presets the `ProcessCallback` parameter to `FlxObject.separate()`.
+Или используйте метод `FlxG.collide()`, который вызывает `FlxG.overlap()` выставляет параметр `ProcessCallback` в значение `FlxObject.separate()`.
 
-### Setting World Bounds
+### Установка границ игрового мира
 
 ```haxe
-// collision won't work outside the bounds, and by default they are only size of one screen
+// столкновения не будут работать за пределами границ
+collision won't work outside the bounds, и по умолчанию они имеют размер только одного экрана
 FlxG.worldBounds.set(tilemap.x, tilemap.y, tilemap.width, tilemap.height);
 ```
 
-### Quick check whether there was a collision
+### Быстрая проверка наличия столкновения
 
 ```haxe
-// sets the touching flags
+// установка флагов соприкосновения
 FlxG.collide(player, level);
 
 if (player.isTouching(FlxObject.DOWN))
 {
-	// player stands on the ground and can jump 
+	// игрок стоит на земле и может прыгать
 }
 
-// will reset touching flags when called
+// сбросит касание флагов при вызове
 super.update(elapsed);
 ```
 
-### Teleport sprite
+### Перемещение спрайта в новую позицию
 
 ```haxe
-// after setting the sprite's new position
+// после установки координат нового положения спрайта
 setPosition(10, 100);
-// don't forget to update 'last' variable if you don't want overlap callbacks for objects between old and new positions of the sprite
+// не забудьте обновить переменную 'last' если вы не хотите перекрывать колбеки для объектов между старыми и новыми позициями спрайта
 last.set(x, y);
 ```
 
-### Pixel Perfect Collision
+### Попиксельная проверка столкновений
 
 ```haxe
 var overlapping = FlxG.pixelPerfectOverlap(sprite1, sprite2);
 ```
 
-## Drawing Shapes
+## Отрисовка форм
 
-**Dynamically draw:** circle, ellipse, line, polygon, triangle, rect, round rect and rect complex.
+**Динамическая отрисовка:** круга, эллипса, линии, многоугольника, треугольника, прямоугольника, прямоугольника со скругленными углами, сложный прямоугольник.
 
 ```haxe
 using flixel.util.FlxSpriteUtil;
 ```
 
-Haxe docs about the `using` keyword: [haxe.org/manual/lf-static-extension.html](https://haxe.org/manual/lf-static-extension.html).
+Документация Haxe по ключевому слову `using`: [haxe.org/manual/lf-static-extension.html](https://haxe.org/manual/lf-static-extension.html).
 
 ```haxe
 var canvas = new FlxSprite();
@@ -542,7 +542,7 @@ canvas.makeGraphic(FlxG.width, FlxG.height, FlxColor.TRANSPARENT, true);
 add(canvas);
 ```
 
-The last argument of `makeGraphic()` is `Unique`, whether the graphic should be an unique instance in the graphics cache, if you create multiple graphics like this, set it to `true` to avoid conflicts.
+Последний аргуменит метода `makeGraphic()` - уникальность (`Unique`), определяет должна ли созданная графика быть уникальным экземпляром в графическом кеше, если вы создаете несколько графических объектов, установите для него значение `true`, чтобы избежать конфликтов.
 
 ```haxe
 var lineStyle:LineStyle = { color: FlxColor.RED, thickness: 1 };
@@ -550,16 +550,16 @@ var drawStyle:DrawStyle = { smoothing: true };
 ```
 
 ```haxe
-// Circle
+// Круг
 canvas.drawCircle(X, Y, Radius, Color, lineStyle, drawStyle);
 
-// Ellipse
+// Эллипс
 canvas.drawEllipse(X, Y, Width, Height, Color, lineStyle, drawStyle);
 
-// Line
+// Линия
 canvas.drawLine(StartX, StartY, EndX, EndY, lineStyle);
 
-// Polygon
+// Многоугольник
 var vertices = new Array<FlxPoint>();
 vertices[0] = new FlxPoint(0, 0);
 vertices[1] = new FlxPoint(100, 0);
@@ -567,30 +567,30 @@ vertices[2] = new FlxPoint(100, 300);
 vertices[3] = new FlxPoint(0, 100);
 canvas.drawPolygon(vertices, Color, lineStyle, drawStyle);
 
-// Triangle
+// Треугольник
 canvas.drawTriangle(X, Y, Height, Color, lineStyle, drawStyle);
 
-// Rect
+// Прямоугольник
 canvas.drawRect(X, Y, Width, Height, Color, lineStyle, drawStyle);
 
-// Round Rect
+// Прямоугольник со скругленными углами
 canvas.drawRoundRect(X, Y, Width, Height, EllipseWidth, EllipseHeight, Color, lineStyle, drawStyle);
 
-// Rect Complex
+// Сложный прямоугольник со скругленными углами
 canvas.drawRoundRectComplex(X, Y, Width, Height, TopLeftRadius, TopRightRadius, BottomLeftRadius, BottomRightRadius, Color, lineStyle, drawStyle);
 ```
 
-Use `canvas.fill(FlxColor.TRANSPARENT);` to clear the canvas.
+Используйте `canvas.fill(FlxColor.TRANSPARENT);` чтобы очистить холст.
 
 
 ## HUD
 
 ```haxe
-// prevents the sprite to scroll with the camera
+// привязывает спрайт к положению камеры
 scrollFactor.set(0, 0);
 ```
 
-### Zooming game while leaving HUD intact
+### Зумирование в игре, без изменения HUD
 
 ```haxe
 gameCamera = new FlxCamera(0, 0, screenWidth, screenHeight);
@@ -610,47 +610,47 @@ hudElement.cameras = [uiCamera];
 ```
 
 
-## Debugger
+## Отладчик
 
-Press `~ key` to open it during runtime, or open by code with `FlxG.debugger.visible = true`.
+Нажмите клавишу `~` чтобы открыть отладчик в игре, или установите `FlxG.debugger.visible = true` чтобы открыть его с помощью кода.
 
 ```haxe
-// Log
+// Вывод в отладчик
 FlxG.log.add("My var: " + myVar);
-// or
+// или
 FlxG.log.redirectTraces = true;
 trace("My var: ", myVar);
 
-// Watch
+// Наблюдение за переменной
 FlxG.watch.add(object, "property");
 
-// Add world space mouse position to watch list
+// Добавление в отслеживание глобальных коорджинат мыши
 FlxG.watch.addMouse();
 
-// Create a tracker window for player (of class Player) showing "x", "y" and custom fields "jumping" and "ladder"
+// Создание отдельного теркера для игрока (класса Player), отображение координат "x", "y" и пользовательских полей "jumping" и "ladder"
 FlxG.debugger.addTrackerProfile(new TrackerProfile(Player, ["x", "y", "jumping", "ladder"], []));
 FlxG.debugger.track(player, "Hero");
 ```
 
-## Hiding Cursor
+## Скрытие курсора мыши
 
 ```haxe
 FlxG.mouse.visible = false;
 ```
 
-## Adding Gravity
+## Добавление гравитации
 
 ```haxe
 acceleration.y = 600;
 ```
 
-## Sort objects in FlxGroup
+## Сортировка объектов в FlxGroup
 
 ```haxe
-// sort by Y for top-down game
+// сортировка игровых элементов по Y
 group.sort(FlxSort.byY, FlxSort.ASCENDING);
 
-// sort with custom function (here: by Z)
+// сортировка с собственной функцией (в примере: по Z)
 var group = new FlxTypedGroup<ZSprite>();
 group.sort(
 	function(order:Int, sprite1:ZSprite, sprite2:ZSprite):Int
@@ -661,14 +661,14 @@ group.sort(
 );
 ```
 
-## FlxPoint Pool
+## Пул FlxPoint
 
 ```haxe
-// get from FlxPoint pool
+// получение из пула FlxPoint
 var tileSize = FlxPoint.get(16, 16);
 
 var actionTileset = FlxTileFrames.fromGraphic(FlxG.bitmap.add("assets/images/ui/actions.png"), tileSize);
 
-// release it back in pool to reuse
+// убираем обратно в пул для повторного использования
 tileSize.put();
 ```

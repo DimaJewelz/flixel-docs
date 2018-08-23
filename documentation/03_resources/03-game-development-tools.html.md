@@ -1,73 +1,73 @@
 ```
-title: "Game Development Tools"
+title: "Инструменты разработки игр"
 ```
 
-## Graphics Editors
+## Графические редакторы
 
 #### [Gimp](http://www.gimp.org/)
 
-An advanced bitmap based image editor that has many capabilities similar to commercial software. It can be used as a simple paint program, an expert quality photo retouching program, an online batch processing system, a mass production image renderer, an image format converter, etc.
+Продвинутый растровый редактор изображений, который имеет множетсво возможностей, схожий с платным софтом. Может быть использован как программа для рисования, как редактор для ретуши фотографий, онлайн-система пакетной обработки, средство визуализации изображений, конвертер изображение и т.д.
 
 #### [Paint.NET](http://www.getpaint.net)
-With an easy-to-learn but powerful set of tools, Paint.NET can be used for photo retouching, tilemap editing, pixel art editing, and so on. It contains advanced features such as levels and curves editing, noise addition and reduction, fractal and Perlin noise generation and more, but can also be used as a simple image editor.
+Легкий для обучения редактор может быть использован для ретуши, редактирования тайлов, создания пиксельарта, и т.д. Содержит дополнительные функции, такие как редактирование уровней и кривых, добавление и уменьшение шума, генерция шума и т.д. Но также может быть использован в качестве простого редактора изображений.
 
 #### [Inkscape](http://www.inkscape.org/)
 
-An advanced vector image editor with an advanced editing toolset. Inkscape has capabilities similar to commercial software such as Adobe Illustrator, CorelDraw, or Xara X. Inkscape leverages the W3C standard Scalable Vector Graphics (SVG) file format.
-Inkscape supports many advanced SVG features (markers, clones, alpha blending, etc.) and great care is taken in designing a streamlined interface. It is very easy to edit nodes, perform complex path operations, trace bitmaps and much more.
+Продвинутый векторный редактор с болшим функционалом. Имеет схожий с платными пакетами функционал, такими как Adobe Illustrator, CorelDraw или Xara X. Использует стандарт W3C для масштабируемой векторной графики (SVG).
+Inkscape поддерживает можество возможностей SVG (маркеры, клоны, альфа наложение и т.д.), большое внимание уделено разработке упрощенного интерфейса. Довольно легко редактировать узлы, выполнять сложные операции с путями, трассировать растровые изображения и многое другое.
 
 #### [Krita](http://www.krita.org/)
 
-Krita is a free digital painting and illustration application. Krita offers CMYK support, HDR painting, perspective grids, dockers, filters, painting assistants, and many other features you would expect.
+Krita это бесплатное приложение для цифровой живописи и иллюстрации. Поддерживает CMYK, HDR отрисовку, сетки перспективы, докеры, фильтры, ассистенты отрисовки, и многие другие полезные функции.
 
-## Sound Editors
+## Звуковые редакторы
 
 #### [Audacity](http://www.audacityteam.org/)
 
-Audacity is free, open source, cross-platform audio software for multi-track recording and editing.
+Audacity бесплатный, кроссплатформенный редактор с открытым исходным кодом. Подходит для записи и редактирования нескольких дорожек.
 
 #### [LMMS](http://lmms.sourceforge.net/)
 
-LMMS is a free cross-platform software which allows you to produce music with your computer.
+LMMS бесплатный кроссплатформенный редактор, который позволяет вам создавать музыку на компьютере.
 
 #### [SFXR](http://www.drpetter.se/project_sfxr.html)
 
-SFXR is a sound generator, widely used for creating sound effects for Ludum Dare games.
+SFXR это звуковой генератор, широко используется для создания звуковых эффектов в ускоренных разработках игр Ludum Dare.
 
 #### [BFXR](http://www.bfxr.net/)
 
-BFXR is an improved ActionScript 3 port of SFXR with more features. It has moved in the direction of increased complexity and range of expression.
+BFXR это усовершенствованный порт с ActionScript 3 SFXR с некоторыми дополнительными функциями. 
 
 #### [LabChirp](http://labbed.net/software/labchirp/)
 
-LabChirp is a program for creating sound effects.
+LabChirp - программа для создания звуковых эффектов.
 
-## Map Editors
+## Редакторы карт
 
 ### [Tiled Map Editor](http://www.mapeditor.org/)
 
-Tiled is a general purpose tile map editor. It is meant to be used for editing maps of any tile-based game, be it an RPG, a platformer or a Breakout clone. [This demo shows how to load a Tiled map](http://haxeflixel.com/demos/TiledEditor/).
+Tiled - повсеместно используемый редактор тайловых карт. Он предназначен для создания карт любой игры на основе тайлов: RPG, платформер или клон Breakout. [В этом примере можно ознакомиться с загрузкой карты из Tiled](http://haxeflixel.com/demos/TiledEditor/).
 
 ### [Ogmo Editor](http://www.ogmoeditor.com/)
 
-Ogmo Editor is a generic level editor for indie game developers who use Windows. It also happens to be free and open source. The editor is built to be reconfigurable, so you can set it up to work well for your game project. [This HaxeFlixel tutorial](http://haxeflixel.com/documentation/part-v-tiles-maps-and-collisions/) demonstrates how to create a simple top-down level with Ogmo.
+Ogmo Editor это редактор общего уровня для разработчиков indie-игр, которые используют Windows. Бесплатный и с открытым кодом. Редактор сконструирован так, чтобы его можно было переконфигурировать, поэтому вы можете настроить его для работы в своем игровом проекте. [Этот урок HaxeFlixel](http://haxeflixel.com/documentation/part-v-tiles-maps-and-collisions/) показывает как создать простой уровень в Ogmo.
 
-## Asset Utilities
+## Утилиты для ассетов
 
 ### [ShoeBox](http://renderhjs.net/shoebox/)
 
-ShoeBox is a free Adobe Air based app for Windows and Mac OS X with game and UI related tools. It has many utilities that make asset management easier, such as [sprite packing](http://renderhjs.net/shoebox/packSprites.htm), [sprite extraction](http://renderhjs.net/shoebox/extractSprites.htm), [texture ripping](http://renderhjs.net/shoebox/textureRipper.htm), [bitmap font creation](http://renderhjs.net/shoebox/bitmapFont.htm), and more.
+ShoeBox это бесплатное приложение Adobe Air для Windows и Mac OS X с инструментами для игр и UI. У него есть много утилит, которые делают управлегние ассетами намного проще, например [упаковщик спрайтов](http://renderhjs.net/shoebox/packSprites.htm), [вырезание спрайтов](http://renderhjs.net/shoebox/extractSprites.htm), [текстурирование](http://renderhjs.net/shoebox/textureRipper.htm), [создание bitmap шрифтов](http://renderhjs.net/shoebox/bitmapFont.htm), и многое другое.
 
 ### [Texture Packer](https://www.codeandweb.com/texturepacker)
 
-Texture Packer does one thing very well - it packs several sprites into one large image to help reduce load times for your game. It's easy to use and easy to integrate with HaxeFlixel. [This demo shows how to use a TexturePackerAtlas](http://haxeflixel.com/demos/TexturePackerAtlas/).
+Texture Packer упаковывает несколько спрайтов в одно большое изображение для уменьшения времени загрузки в игре. Легок в усправлении и легко подключается к HaxeFlixel. [Это демо показывает как использовать TexturePackerAtlas](http://haxeflixel.com/demos/TexturePackerAtlas/).
 
-## More Resources
+## Еще ресурсы
 
 #### [Ludum Dare List](http://www.ludumdare.com/compo/tools/)
 
-Ludum Dare hosts a great list of tools for general game development.
+Ludum Dare содержит огромный список интрументов для создания игр.
 
 #### [PixelProspector](http://www.pixelprospector.com/indie-resources/)
 
-Huge list of resources for game dev. A must read for indie developers.
+Огромный список ресурсов дял геймдева. Обязательно к прочтению для инди-разработчиков.
